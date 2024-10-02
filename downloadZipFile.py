@@ -1,10 +1,7 @@
 from typing import Any
 from urllib.request import urlretrieve
 from zipfile import ZipFile
-
-url="https://archive.ics.uci.edu/static/public/878/cirrhosis+patient+survival+prediction+dataset-1.zip"
-path="./data/cirrhosis.zip"
-destination="./data"
+import os
 
 class downloadFileFromURL:
 
@@ -19,7 +16,7 @@ class downloadFileFromURL:
         except Exception as e:
             print(f"The following error has ocurred by trying to download the file: {e}")
             raise Exception("Error downloading the file")
-        return path
+        return self.path
     
 class zipExtractor:
 
@@ -31,17 +28,18 @@ class zipExtractor:
         try:
             with ZipFile(self.origin) as zObject: 
                 zObject.extractall(path=self.destination)
-                print(f"File {self.origin} has been succesfully extracted into {destination}")
-                return destination
+                print(f"File {self.origin} has been succesfully extracted into {self.destination}")
         except Exception as e:
             print(f"The following error has ocurred when extracting the file {self.origin} into {self.destination}: {e}")
             raise Exception("Errorextracting zip file")
-  
+        return self.destination
+
+    def deleteZip(self):
+        try:
+            os.remove(self.origin)
+            print(f"Zip File {self.origin} succesfuly removed")
+        except Exception as e:
+            print(f"error deleting the file {self.origin}, with following error:{e}")
 
 
 
-
-fileDownloader = downloadFileFromURL(url,path)
-pathOfFile=fileDownloader()
-extractor = zipExtractor(pathOfFile,destination)
-pathofFiles = extractor()
