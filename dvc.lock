@@ -3,14 +3,74 @@ stages:
   download_data:
     cmd: py ./refactoring/descargarDatadeZipACSV.py 
       https://archive.ics.uci.edu/static/public/878/cirrhosis+patient+survival+prediction+dataset-1.zip
-      data/base cirrhosis.zip
+      data/download cirrhosis.zip
     deps:
     - path: refactoring/descargarDatadeZipACSV.py
       hash: md5
-      md5: 020ee665016f99f413dcb6a9d08bad7b
-      size: 800
+      md5: 2fcb0c4ac3f5bf742f33d035c6c80fba
+      size: 787
     outs:
-    - path: data/base/cirrhosis.csv
+    - path: data/download/cirrhosis.csv
       hash: md5
       md5: 230a3916291af39603e89042463349ef
       size: 31860
+  load_Data:
+    cmd: py ./refactoring/cargarData.py data/download/cirrhosis.csv data/base/cirrhosis.csv
+    deps:
+    - path: ./refactoring/EDA.py
+      hash: md5
+      md5: f460a2a207c714768cb0fc5e6d6ffd74
+      size: 2731
+    - path: ./refactoring/cargarData.py
+      hash: md5
+      md5: 729aafb23effa5631ee7627ad189118a
+      size: 302
+    - path: data/download/cirrhosis.csv
+      hash: md5
+      md5: 230a3916291af39603e89042463349ef
+      size: 31860
+    outs:
+    - path: data/base/cirrhosis.csv
+      hash: md5
+      md5: 3c8f5d7d2d2d9c2b9c258b500705e11c
+      size: 34561
+  split_Data:
+    cmd: py ./refactoring/splitData.py data/base/cirrhosis.csv data/base/
+    deps:
+    - path: ./refactoring/EDA.py
+      hash: md5
+      md5: f460a2a207c714768cb0fc5e6d6ffd74
+      size: 2731
+    - path: ./refactoring/splitData.py
+      hash: md5
+      md5: 6361b3454f019ef34b34d5ab5c5bc7b4
+      size: 1734
+    - path: data/base/cirrhosis.csv
+      hash: md5
+      md5: 3c8f5d7d2d2d9c2b9c258b500705e11c
+      size: 34561
+    outs:
+    - path: data/base/X_test.csv
+      hash: md5
+      md5: eef6c7dbcab88cdd047988bdc34db171
+      size: 4708
+    - path: data/base/X_train.csv
+      hash: md5
+      md5: cf5d318a0fa40376a7c653e34e809c52
+      size: 22824
+    - path: data/base/X_val.csv
+      hash: md5
+      md5: fdfdd17fca7cd7544a3b769926ab21a1
+      size: 4892
+    - path: data/base/y_test.csv
+      hash: md5
+      md5: cbc9105a997a0c187974c751aee6261f
+      size: 201
+    - path: data/base/y_train.csv
+      hash: md5
+      md5: b41d85a8b547202555d4f30f8fa4152c
+      size: 901
+    - path: data/base/y_val.csv
+      hash: md5
+      md5: 575edc265d8f0c7cfe9f7fc2c2d8582c
+      size: 201

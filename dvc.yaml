@@ -1,7 +1,30 @@
 stages:
   download_data:
-    cmd: py ./refactoring/descargarDatadeZipACSV.py ${data.url} ${data.basePath} ${data.cirrhosisZipFileName}
+    cmd: py ./refactoring/descargarDatadeZipACSV.py ${data.url} ${data.downloadPath} ${data.cirrhosisZipFileName}
     deps:
       - refactoring/descargarDatadeZipACSV.py
     outs:
+      - ${data.downloadPath}/${data.cirrhosisCsvFileName}
+  load_Data:
+    cmd: py ./refactoring/cargarData.py ${data.downloadPath}/${data.cirrhosisCsvFileName} ${data.basePath}/${data.cirrhosisCsvFileName}
+    deps:
+      - ./refactoring/cargarData.py
+      - ./refactoring/EDA.py
+      - ${data.downloadPath}/${data.cirrhosisCsvFileName}
+    outs:
       - ${data.basePath}/${data.cirrhosisCsvFileName}
+  split_Data:
+    cmd: py ./refactoring/splitData.py ${data.basePath}/${data.cirrhosisCsvFileName} ${data.basePath}/
+    deps: 
+      - ./refactoring/splitData.py
+      -  ${data.basePath}/${data.cirrhosisCsvFileName}
+      - ./refactoring/EDA.py
+    outs:
+      - ${data.basePath}/X_test.csv
+      - ${data.basePath}/y_test.csv
+      - ${data.basePath}/X_val.csv
+      - ${data.basePath}/y_val.csv
+      - ${data.basePath}/X_train.csv
+      - ${data.basePath}/y_train.csv
+
+ 

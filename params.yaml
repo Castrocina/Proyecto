@@ -1,5 +1,6 @@
 data:
   url: "https://archive.ics.uci.edu/static/public/878/cirrhosis+patient+survival+prediction+dataset-1.zip"
+  downloadPath: "data/download"
   basePath: "data/base"
   cirrhosisZipFileName: "cirrhosis.zip"
   cirrhosisCsvFileName: "cirrhosis.csv"
