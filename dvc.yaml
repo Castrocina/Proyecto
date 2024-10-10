@@ -1,0 +1,7 @@
+stages:
+  download_data:
+    cmd: py ./refactoring/descargarDatadeZipACSV.py ${data.url} ${data.basePath} ${data.cirrhosisZipFileName}
+    deps:
+      - refactoring/descargarDatadeZipACSV.py
+    outs:
+      - ${data.basePath}/${data.cirrhosisCsvFileName}

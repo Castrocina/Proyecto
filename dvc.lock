@@ -1,0 +1,16 @@
+schema: '2.0'
+stages:
+  download_data:
+    cmd: py ./refactoring/descargarDatadeZipACSV.py 
+      https://archive.ics.uci.edu/static/public/878/cirrhosis+patient+survival+prediction+dataset-1.zip
+      data/base cirrhosis.zip
+    deps:
+    - path: refactoring/descargarDatadeZipACSV.py
+      hash: md5
+      md5: 020ee665016f99f413dcb6a9d08bad7b
+      size: 800
+    outs:
+    - path: data/base/cirrhosis.csv
+      hash: md5
+      md5: 230a3916291af39603e89042463349ef
+      size: 31860
