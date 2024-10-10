@@ -14,3 +14,9 @@ Cuando se agregue un nuevo archivo de datos o se modifique uno existente hay que
 Cuando se agregue un nuevo archivo de modelo o se modifique uno existente hay que ejecutar el comando dvc ,/ add models y posteriormente el comando dvc push.
 Para bajar todos los archivos de dvc hay que ejcutar el comando dvc pull (Avisarme si no funciona)
 
+para ejecutar los archivos de python, se creo un pipeline de dvc, el cual nos ayudara a guardar la version de los datos y modelos usados en cada iterracion, de igual manera este nos ayudara a poder tener un proceso repetible, para ayudar al continues deployment.
+
+Para ejecutar el pipeline de dvc se ejecuta el siguiente comando desde el directorio raiz.
+
+
+dvc exp run

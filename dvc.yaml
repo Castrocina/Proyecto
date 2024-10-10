@@ -46,10 +46,23 @@ stages:
   entrenar-modelos:
     cmd: py ./refactoring/entrenarModelos.py ${data.preprocesdePath}/ ${modelos.path}/
     deps: 
+      - ./refactoring/entrenarModelos.py
       - ${data.preprocesdePath}/X_test.csv
       - ${data.preprocesdePath}/y_test.csv
     outs:
       - ${modelos.path}/modeloRegLog.sav
+      - ${modelos.path}/modeloXGBoost.sav
+  evaluar-modelos:
+    cmd: py ./refactoring/evaluarModelos.py ${data.preprocesdePath}/ ${modelos.path}/
+    deps: 
+      - ${data.preprocesdePath}/X_test.csv
+      - ${data.preprocesdePath}/y_test.csv
+      - ${data.preprocesdePath}/X_val.csv
+      - ${data.preprocesdePath}/y_val.csv
+      - ${data.preprocesdePath}/X_train.csv
+      - ${data.preprocesdePath}/y_train.csv
+      - ${modelos.path}/modeloRegLog.sav
+      - ${modelos.path}/modeloXGBoost.sav
       - ${modelos.path}/modeloXGBoost.sav
 
  

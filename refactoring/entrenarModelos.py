@@ -53,3 +53,4 @@ if __name__ == '__main__':
         salvarModelo(modeloLogRegresion,modelPath+"modeloRegLog.sav")
         salvarModelo(modeloXG,modelPath+"modeloXGBoost.sav")
         
+        
