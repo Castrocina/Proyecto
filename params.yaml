@@ -5,3 +5,5 @@ data:
   preprocesdePath: "data/preprocesed"
   cirrhosisZipFileName: "cirrhosis.zip"
   cirrhosisCsvFileName: "cirrhosis.csv"
+modelos:
+  path: "modelos"

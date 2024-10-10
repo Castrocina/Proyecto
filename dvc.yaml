@@ -43,5 +43,13 @@ stages:
       - ${data.preprocesdePath}/y_val.csv
       - ${data.preprocesdePath}/X_train.csv
       - ${data.preprocesdePath}/y_train.csv
+  entrenar-modelos:
+    cmd: py ./refactoring/entrenarModelos.py ${data.preprocesdePath}/ ${modelos.path}/
+    deps: 
+      - ${data.preprocesdePath}/X_test.csv
+      - ${data.preprocesdePath}/y_test.csv
+    outs:
+      - ${modelos.path}/modeloRegLog.sav
+      - ${modelos.path}/modeloXGBoost.sav
 
  

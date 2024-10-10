@@ -42,8 +42,8 @@ if __name__ == '__main__':
     basePath = sys.argv[1]
     preProcesedPath = sys.argv[2]
 
-    X_test = pd.read_csv(basePath+"X_train.csv")
-    y_test = pd.read_csv(basePath+"y_train.csv")
+    X_test = pd.read_csv(basePath+"X_test.csv")
+    y_test = pd.read_csv(basePath+"y_test.csv")
     X_val = pd.read_csv(basePath+"X_val.csv")
     y_val = pd.read_csv(basePath+"y_val.csv")
     X_train = pd.read_csv(basePath+"X_train.csv")
