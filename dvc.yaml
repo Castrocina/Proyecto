@@ -26,5 +26,22 @@ stages:
       - ${data.basePath}/y_val.csv
       - ${data.basePath}/X_train.csv
       - ${data.basePath}/y_train.csv
+  pre_process:
+    cmd: py ./refactoring/preprocess.py ${data.basePath}/ ${data.preprocesdePath}/
+    deps: 
+      - ./refactoring/preprocess.py
+      - ${data.basePath}/X_test.csv
+      - ${data.basePath}/y_test.csv
+      - ${data.basePath}/X_val.csv
+      - ${data.basePath}/y_val.csv
+      - ${data.basePath}/X_train.csv
+      - ${data.basePath}/y_train.csv
+    outs:
+      - ${data.preprocesdePath}/X_test.csv
+      - ${data.preprocesdePath}/y_test.csv
+      - ${data.preprocesdePath}/X_val.csv
+      - ${data.preprocesdePath}/y_val.csv
+      - ${data.preprocesdePath}/X_train.csv
+      - ${data.preprocesdePath}/y_train.csv
 
  

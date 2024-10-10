@@ -74,3 +74,59 @@ stages:
       hash: md5
       md5: 575edc265d8f0c7cfe9f7fc2c2d8582c
       size: 201
+  pre_process:
+    cmd: py ./refactoring/preprocess.py data/base/ data/preprocesed/
+    deps:
+    - path: ./refactoring/preprocess.py
+      hash: md5
+      md5: 0988c63974abfd67dab8c189ef8e3a8d
+      size: 3216
+    - path: data/base/X_test.csv
+      hash: md5
+      md5: eef6c7dbcab88cdd047988bdc34db171
+      size: 4708
+    - path: data/base/X_train.csv
+      hash: md5
+      md5: cf5d318a0fa40376a7c653e34e809c52
+      size: 22824
+    - path: data/base/X_val.csv
+      hash: md5
+      md5: fdfdd17fca7cd7544a3b769926ab21a1
+      size: 4892
+    - path: data/base/y_test.csv
+      hash: md5
+      md5: cbc9105a997a0c187974c751aee6261f
+      size: 201
+    - path: data/base/y_train.csv
+      hash: md5
+      md5: b41d85a8b547202555d4f30f8fa4152c
+      size: 901
+    - path: data/base/y_val.csv
+      hash: md5
+      md5: 575edc265d8f0c7cfe9f7fc2c2d8582c
+      size: 201
+    outs:
+    - path: data/preprocesed/X_test.csv
+      hash: md5
+      md5: e0bdf1581b82f531e15b3464d4189d7b
+      size: 83707
+    - path: data/preprocesed/X_train.csv
+      hash: md5
+      md5: e0bdf1581b82f531e15b3464d4189d7b
+      size: 83707
+    - path: data/preprocesed/X_val.csv
+      hash: md5
+      md5: 300770d4442d05f1b065cac7a734054d
+      size: 18139
+    - path: data/preprocesed/y_test.csv
+      hash: md5
+      md5: 1da28e075f3aa8798461608b643ff976
+      size: 879
+    - path: data/preprocesed/y_train.csv
+      hash: md5
+      md5: 1da28e075f3aa8798461608b643ff976
+      size: 879
+    - path: data/preprocesed/y_val.csv
+      hash: md5
+      md5: c63eb493adf0302d6a8e5926bdbae343
+      size: 192
