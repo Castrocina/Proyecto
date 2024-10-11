@@ -148,7 +148,7 @@ stages:
     outs:
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 88b00af247abb9c55b9843d7536ae698
+      md5: e2e4839259d7c83067cccc78ac2e0840
       size: 1625
     - path: modelos/modeloXGBoost.sav
       hash: md5
@@ -183,7 +183,7 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 88b00af247abb9c55b9843d7536ae698
+      md5: e2e4839259d7c83067cccc78ac2e0840
       size: 1625
     - path: modelos/modeloXGBoost.sav
       hash: md5
