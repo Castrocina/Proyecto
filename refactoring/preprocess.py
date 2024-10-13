@@ -6,6 +6,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder, FunctionTransformer
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import LabelEncoder
+from loadParams import load_params
 
 
 def crearPipelinePreprocesamientoX():
@@ -39,15 +40,17 @@ def crearPipelinePreprocesamientoy():
 
 
 if __name__ == '__main__':
-    basePath = sys.argv[1]
-    preProcesedPath = sys.argv[2]
+    parametros = load_params()
+    base_path=parametros["data"]["basePath"]
+    preprocesado_path = parametros["data"]["preprocesdePath"]
 
-    X_test = pd.read_csv(basePath+"X_test.csv")
-    y_test = pd.read_csv(basePath+"y_test.csv")
-    X_val = pd.read_csv(basePath+"X_val.csv")
-    y_val = pd.read_csv(basePath+"y_val.csv")
-    X_train = pd.read_csv(basePath+"X_train.csv")
-    y_train = pd.read_csv(basePath+"y_train.csv")
+
+    X_test = pd.read_csv(base_path+"X_test.csv")
+    y_test = pd.read_csv(base_path+"y_test.csv").values.ravel()
+    X_val = pd.read_csv(base_path+"X_val.csv")
+    y_val = pd.read_csv(base_path+"y_val.csv").values.ravel()
+    X_train = pd.read_csv(base_path+"X_train.csv")
+    y_train = pd.read_csv(base_path+"y_train.csv").values.ravel()
 
     x_preprocess_pipeline = crearPipelinePreprocesamientoX()
     y_preprocess_pipeline = crearPipelinePreprocesamientoy()
@@ -62,11 +65,11 @@ if __name__ == '__main__':
     X_train = x_preprocess_pipeline.transform(X_train)
     y_train = y_preprocess_pipeline.transform(y_train)
 
-    pd.DataFrame(X_train).to_csv(preProcesedPath+"X_train.csv", index=False)
-    pd.DataFrame(y_train).to_csv(preProcesedPath+"y_train.csv", index=False)
-    pd.DataFrame(X_val).to_csv(preProcesedPath+"X_val.csv", index=False)
-    pd.DataFrame(y_val).to_csv(preProcesedPath+"y_val.csv", index=False)
-    pd.DataFrame(X_test).to_csv(preProcesedPath+"X_test.csv", index=False)
-    pd.DataFrame(y_test).to_csv(preProcesedPath+"y_test.csv", index=False)
+    pd.DataFrame(X_train).to_csv(preprocesado_path+"X_train.csv", index=False)
+    pd.DataFrame(y_train).to_csv(preprocesado_path+"y_train.csv", index=False)
+    pd.DataFrame(X_val).to_csv(preprocesado_path+"X_val.csv", index=False)
+    pd.DataFrame(y_val).to_csv(preprocesado_path+"y_val.csv", index=False)
+    pd.DataFrame(X_test).to_csv(preprocesado_path+"X_test.csv", index=False)
+    pd.DataFrame(y_test).to_csv(preprocesado_path+"y_test.csv", index=False)
 
 

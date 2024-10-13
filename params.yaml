@@ -6,10 +6,9 @@ data:
   cirrhosisNombreArchivo: "cirrhosis"
 
 modelos:
-  path: "modelos"
+  path: "modelos/"
 
 
 mlflow:
-  version: "v1"
   experiment_name: "Cirrhosis V1"
   tracking_uri: "http://127.0.0.1:5000"

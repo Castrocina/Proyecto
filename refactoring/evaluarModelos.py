@@ -5,8 +5,34 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 import pickle
 import sys
 import pandas as pd
+from loadParams import load_params
+import mlflow
 
 class evaluarModelo():
+    def __init__(self,modelo,X_train,y_train,X_val,y_val,X_test,y_test,tipoModelo):
+         self.modelo = modelo
+         self.X_train = X_train
+         self.y_train=y_train
+         self.X_val=X_val
+         self.y_val=y_val
+         self.X_test=X_test
+         self.y_test=y_test
+         self.tipoModelo = tipoModelo
+
+
+    def evaluar(self):
+        print(f'Evaluado Modelo {self.tipoModelo}')
+        y_pred_test = self.modelo.predict(self.X_test)
+        y_pred_val = self.modelo.predict(self.X_val)
+        y_pred_train = self.modelo.predict(self.X_train)
+        self.matriz_de_confuision(self.y_train,y_pred_train,"entrenamiento")
+        self.matriz_de_confuision(self.y_val,y_pred_val,"validacion")
+        self.matriz_de_confuision(self.y_test,y_pred_test,"prueba")
+        self.precision_train,self.recall_train,self.f1_train = self.metricasDeRendimiento(self.y_train,y_pred_train,"entrenamiento")
+        self.precision_val,self.recall_val,self.f1_val =self.metricasDeRendimiento(self.y_val,y_pred_val,"validacion")
+        self.precision_test,self.recall_test,self.f1_test =self.metricasDeRendimiento(self.y_test,y_pred_test,"prueba")
+
+        self.logModeloAMLFlow()
 
     @staticmethod
     def matriz_de_confuision(y,ypred,tipoDeSetDeDatos):
@@ -31,44 +57,54 @@ class evaluarModelo():
         print(f"Recall de conjunto de {tipoDeSetDeDatos}: {recall:.2f}")
         print(f"Puntuación de conjunto de {tipoDeSetDeDatos}: {f1:.2f}")
 
+        return precision,recall,f1
+
+    def logModeloAMLFlow(self):
+        hyperParametrosDelModelo = self.modelo.get_params()
+        for parametro in hyperParametrosDelModelo:
+                mlflow.log_param(parametro,hyperParametrosDelModelo[parametro])
+        mlflow.log_metric(f'precision entrenamiento {self.tipoModelo}',self.precision_train)
+        mlflow.log_metric(f'recall entrenamiento {self.tipoModelo}',self.recall_train)
+        mlflow.log_metric(f'f1 entrenamiento {self.tipoModelo}',self.f1_train)
+        mlflow.log_metric(f'precision validacion {self.tipoModelo}',self.precision_val)
+        mlflow.log_metric(f'recall validacion {self.tipoModelo}',self.recall_val)
+        mlflow.log_metric(f'f1 validacion {self.tipoModelo}',self.f1_val)
+        mlflow.log_metric(f'precision prueba {self.tipoModelo}',self.precision_test)
+        mlflow.log_metric(f'recall prueba {self.tipoModelo}',self.recall_test)
+        mlflow.log_metric(f'f1 prueba {self.tipoModelo}',self.f1_test)
+        mlflow.sklearn.log_model(self.modelo, f"{self.tipoModelo}_model")
+
+
 if __name__ == '__main__':
-    preProcesedPath = sys.argv[1]
-    pathModelos = sys.argv[2]
+    parametros = load_params()
+    preprocesado_path = parametros["data"]["preprocesdePath"]
+    modelos_path = parametros["modelos"]["path"]
 
-    X_train = pd.read_csv(preProcesedPath+"X_train.csv")
-    y_train = pd.read_csv(preProcesedPath+"y_train.csv")
-    X_val = pd.read_csv(preProcesedPath+"X_val.csv")
-    y_val = pd.read_csv(preProcesedPath+"y_val.csv")
-    X_test = pd.read_csv(preProcesedPath+"X_test.csv")
-    y_test = pd.read_csv(preProcesedPath+"y_test.csv")
+    X_train = pd.read_csv(preprocesado_path+"X_train.csv")
+    y_train = pd.read_csv(preprocesado_path+"y_train.csv")
+    X_val = pd.read_csv(preprocesado_path+"X_val.csv")
+    y_val = pd.read_csv(preprocesado_path+"y_val.csv")
+    X_test = pd.read_csv(preprocesado_path+"X_test.csv")
+    y_test = pd.read_csv(preprocesado_path+"y_test.csv")
 
-    with open(pathModelos+'modeloRegLog.sav', 'rb') as f:
+    with open(modelos_path+'modeloRegLog.sav', 'rb') as f:
         modeloRLog = pickle.load(f)
 
-    with open(pathModelos+'modeloXGBoost.sav', 'rb') as f:
+    with open(modelos_path+'modeloXGBoost.sav', 'rb') as f:
         modeloXGBoost = pickle.load(f)
 
-    y_pred_rlog_test = modeloRLog.predict(X_test)
-    y_pred_rlog_val = modeloRLog.predict(X_val)
-    y_pred_rlog_train = modeloRLog.predict(X_train)
-    print("evaluacion modelo regresion logistica")
-    evaluarModelo().matriz_de_confuision(y_train,y_pred_rlog_train,"entrenamiento")
-    evaluarModelo().matriz_de_confuision(y_val,y_pred_rlog_val,"validacion")
-    evaluarModelo().matriz_de_confuision(y_test,y_pred_rlog_test,"prueba")
-    evaluarModelo().metricasDeRendimiento(y_train,y_pred_rlog_train,"entrenamiento")
-    evaluarModelo().metricasDeRendimiento(y_val,y_pred_rlog_val,"validacion")
-    evaluarModelo().metricasDeRendimiento(y_test,y_pred_rlog_test,"prueba")
+    mlflow.set_tracking_uri(parametros['mlflow']['tracking_uri'])
+    experiment = mlflow.set_experiment(parametros['mlflow']['experiment_name'])
 
-    y_pred_xg_test = modeloXGBoost.predict(X_test)
-    y_pred_xg_val = modeloXGBoost.predict(X_val)
-    y_pred_xg_train = modeloXGBoost.predict(X_train)
-    print("evaluacion modelo XGBoost")
-    evaluarModelo().matriz_de_confuision(y_train,y_pred_xg_test,"entrenamiento")
-    evaluarModelo().matriz_de_confuision(y_val,y_pred_xg_val,"validacion")
-    evaluarModelo().matriz_de_confuision(y_test,y_pred_xg_test,"prueba")
-    evaluarModelo().metricasDeRendimiento(y_train,y_pred_xg_test,"entrenamiento")
-    evaluarModelo().metricasDeRendimiento(y_val,y_pred_xg_val,"validacion")
-    evaluarModelo().metricasDeRendimiento(y_test,y_pred_xg_test,"prueba")
+    
+
+    with mlflow.start_run(experiment_id=experiment.experiment_id):
+        evaluarLogReg = evaluarModelo(modeloRLog,X_train,y_train,X_val,y_val,X_test,y_test,"LogRegresion")
+        evaluarXGBoost = evaluarModelo(modeloXGBoost,X_train,y_train,X_val,y_val,X_test,y_test,"XGBoost")
+        evaluarLogReg.evaluar()
+        evaluarXGBoost.evaluar()
+
+    mlflow.end_run()
 
 
     
