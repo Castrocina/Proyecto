@@ -2,3 +2,6 @@
 data
 modelos
 models
+db_data
+minio_data
+config.env
