@@ -1,24 +1,27 @@
 stages:
   download_data:
-    cmd: py ./refactoring/descargarDatadeZipACSV.py ${data.url} ${data.downloadPath} ${data.cirrhosisZipFileName}
+    cmd: py ./refactoring/descargarDatadeZipACSV.py
     deps:
       - refactoring/descargarDatadeZipACSV.py
+      - refactoring/loadParams.py
     outs:
-      - ${data.downloadPath}/${data.cirrhosisCsvFileName}
+      - ${data.downloadPath}/${data.cirrhosisNombreArchivo}.csv
   load_Data:
-    cmd: py ./refactoring/cargarData.py ${data.downloadPath}/${data.cirrhosisCsvFileName} ${data.basePath}/${data.cirrhosisCsvFileName}
+    cmd: py ./refactoring/cargarData.py
     deps:
       - ./refactoring/cargarData.py
       - ./refactoring/EDA.py
-      - ${data.downloadPath}/${data.cirrhosisCsvFileName}
+      - ${data.downloadPath}/${data.cirrhosisNombreArchivo}.csv
+      - ./refactoring/loadParams.py
     outs:
-      - ${data.basePath}/${data.cirrhosisCsvFileName}
+      - ${data.basePath}/${data.cirrhosisNombreArchivo}.csv
   split_Data:
-    cmd: py ./refactoring/splitData.py ${data.basePath}/${data.cirrhosisCsvFileName} ${data.basePath}/
+    cmd: py ./refactoring/splitData.py
     deps: 
       - ./refactoring/splitData.py
-      -  ${data.basePath}/${data.cirrhosisCsvFileName}
+      -  ${data.basePath}/${data.cirrhosisNombreArchivo}.csv
       - ./refactoring/EDA.py
+      - refactoring/loadParams.py
     outs:
       - ${data.basePath}/X_test.csv
       - ${data.basePath}/y_test.csv

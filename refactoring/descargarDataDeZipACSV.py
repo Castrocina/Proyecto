@@ -2,6 +2,7 @@ import os
 from urllib.request import urlretrieve
 from zipfile import ZipFile
 import sys
+from loadParams import load_params
 
 
 class descargarDataDeZipACSV:
@@ -24,7 +25,10 @@ class descargarDataDeZipACSV:
         os.remove(self.zippath)
 
 if __name__ == '__main__':
-    url=sys.argv[1]
-    zippath=sys.argv[2]+"/"+sys.argv[3]
-    csvpath=sys.argv[2]
-    descargarDataDeZipACSV(url,zippath,csvpath)
+    parametros = load_params()
+    url=parametros["data"]["url"]
+    path_descarga=parametros["data"]["downloadPath"]
+    nombre_archivo=parametros["data"]["cirrhosisNombreArchivo"]
+    zippath=path_descarga+nombre_archivo+".zip"
+    print(zippath)
+    descargarDataDeZipACSV(url,zippath,path_descarga)
