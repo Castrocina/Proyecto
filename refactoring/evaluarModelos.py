@@ -62,7 +62,7 @@ class evaluarModelo():
     def logModeloAMLFlow(self):
         hyperParametrosDelModelo = self.modelo.get_params()
         for parametro in hyperParametrosDelModelo:
-                mlflow.log_param(parametro,hyperParametrosDelModelo[parametro])
+                mlflow.log_param(f"{parametro} {self.tipoModelo}",hyperParametrosDelModelo[parametro])
         mlflow.log_metric(f'precision entrenamiento {self.tipoModelo}',self.precision_train)
         mlflow.log_metric(f'recall entrenamiento {self.tipoModelo}',self.recall_train)
         mlflow.log_metric(f'f1 entrenamiento {self.tipoModelo}',self.f1_train)

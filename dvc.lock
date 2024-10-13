@@ -149,8 +149,8 @@ stages:
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: fd06bb8b13f8ff7c8ae794c817da933b
-      size: 2386
+      md5: a22a18647c53ae9f553b15a0d703ee67
+      size: 2416
     - path: data/preprocesed/X_test.csv
       hash: md5
       md5: e0bdf1581b82f531e15b3464d4189d7b
@@ -166,12 +166,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: cef0b2b2707e9fd4cc3e3b276d54918a
-      size: 1624
+      md5: d4b3e7b2067a9fcecb0273b230ee2d84
+      size: 1640
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: 7b1262d40364043e603abacd1c9efcfb
-      size: 162553
+      md5: 02eb7b3045f42fa0a00c24f5e07030b0
+      size: 266711
   evaluar-modelos:
     cmd: py ./refactoring/evaluarModelos.py
     deps:
@@ -201,12 +201,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: cef0b2b2707e9fd4cc3e3b276d54918a
-      size: 1624
+      md5: d4b3e7b2067a9fcecb0273b230ee2d84
+      size: 1640
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: 7b1262d40364043e603abacd1c9efcfb
-      size: 162553
+      md5: 02eb7b3045f42fa0a00c24f5e07030b0
+      size: 266711
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47

@@ -7,7 +7,7 @@ import pandas as pd
 from loadParams import load_params
 
 def entrenar_modelo(model,param_grid,X_train,y_train):
-        grid_search = GridSearchCV(model, param_grid, cv=5, scoring='accuracy')
+        grid_search = GridSearchCV(model, param_grid, cv=10, scoring='accuracy')
         grid_search.fit(X_train, y_train.ravel())
 
         return grid_search.best_estimator_
@@ -17,12 +17,12 @@ def modeloRlog(X_train,y_train):
         param_grid_logistico = [
                 {
                         'penalty': ['l1', 'l2'],
-                        'C': [0.01, 0.1, 1, 10],
+                        'C': [0.01, 0.06,0.07,0.08,0.04],
                         'solver': ['saga'],
                 },
                 {
                        'penalty': ['elasticnet'],
-                        'C': [0.01, 0.1, 1, 10],
+                        'C': [0.01, 0.06,0.07,0.08,0.04],
                         'solver': ['saga'],
                         'l1_ratio': [0, 0.5, 1]  # Sólo para elasticnet 
                 }
@@ -37,9 +37,9 @@ def modeloXGboost(X_train,y_train):
         modelo_xgboost = XGBClassifier(use_label_encoder=True, eval_metric='logloss')
         param_grid_xgboost = {
         'n_estimators': [50, 100, 200],
-        'learning_rate': [0.01, 0.1, 0.2],
-        'max_depth': [3, 5, 7],
-        'subsample': [0.8, 1.0],
+        'learning_rate': [0.1,0.2,0.3,0.4,0.5],
+        'max_depth': [3,2,1],
+        'subsample': [0.8, 1.0,0.7,0.6],
         'use_label_encoder':["False"]
     }
         modelo = modelo_xgboost
