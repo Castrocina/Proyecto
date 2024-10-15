@@ -89,8 +89,8 @@ stages:
     deps:
     - path: ./refactoring/preprocess.py
       hash: md5
-      md5: ceb0662ef5d9d6ff27dbe51546e4a1f2
-      size: 3393
+      md5: a1c52df6267b243adb473ebeacc6053e
+      size: 3391
     - path: data/base/X_test.csv
       hash: md5
       md5: eef6c7dbcab88cdd047988bdc34db171
@@ -122,8 +122,8 @@ stages:
     outs:
     - path: data/preprocesed/X_test.csv
       hash: md5
-      md5: e0bdf1581b82f531e15b3464d4189d7b
-      size: 83707
+      md5: ea4af18b016253b9f75e780d47fc81c2
+      size: 18175
     - path: data/preprocesed/X_train.csv
       hash: md5
       md5: e0bdf1581b82f531e15b3464d4189d7b
@@ -134,8 +134,8 @@ stages:
       size: 18139
     - path: data/preprocesed/y_test.csv
       hash: md5
-      md5: 1da28e075f3aa8798461608b643ff976
-      size: 879
+      md5: 8f2f5167a23ac8734296f2d3340ff770
+      size: 192
     - path: data/preprocesed/y_train.csv
       hash: md5
       md5: 1da28e075f3aa8798461608b643ff976
@@ -149,16 +149,16 @@ stages:
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: 51a6a68ef209bc443b8c2242698a0dce
+      md5: 888a2b4ed5b7d206c2a1f85fd80066c3
       size: 2421
     - path: data/preprocesed/X_test.csv
       hash: md5
-      md5: e0bdf1581b82f531e15b3464d4189d7b
-      size: 83707
+      md5: ea4af18b016253b9f75e780d47fc81c2
+      size: 18175
     - path: data/preprocesed/y_test.csv
       hash: md5
-      md5: 1da28e075f3aa8798461608b643ff976
-      size: 879
+      md5: 8f2f5167a23ac8734296f2d3340ff770
+      size: 192
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
@@ -166,7 +166,7 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: 23e5cacaef643acffe6e477dcc2d21ca
+      md5: fd926d5c4115275f73dc7f327a84216f
       size: 1640
     - path: modelos//modeloXGBoost.sav
       hash: md5
@@ -177,8 +177,8 @@ stages:
     deps:
     - path: data/preprocesed/X_test.csv
       hash: md5
-      md5: e0bdf1581b82f531e15b3464d4189d7b
-      size: 83707
+      md5: ea4af18b016253b9f75e780d47fc81c2
+      size: 18175
     - path: data/preprocesed/X_train.csv
       hash: md5
       md5: e0bdf1581b82f531e15b3464d4189d7b
@@ -189,8 +189,8 @@ stages:
       size: 18139
     - path: data/preprocesed/y_test.csv
       hash: md5
-      md5: 1da28e075f3aa8798461608b643ff976
-      size: 879
+      md5: 8f2f5167a23ac8734296f2d3340ff770
+      size: 192
     - path: data/preprocesed/y_train.csv
       hash: md5
       md5: 1da28e075f3aa8798461608b643ff976
@@ -201,7 +201,7 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 23e5cacaef643acffe6e477dcc2d21ca
+      md5: fd926d5c4115275f73dc7f327a84216f
       size: 1640
     - path: modelos/modeloXGBoost.sav
       hash: md5

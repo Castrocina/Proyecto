@@ -22,7 +22,7 @@ def modeloRlog(X_train,y_train):
                 },
                 {
                        'penalty': ['elasticnet'],
-                        'C': [0.01, 0.06,0.07,0.08,0.04],
+                        'C': [0.01, 0.06,0.07,0.08,0.05],
                         'solver': ['saga'],
                         'l1_ratio': [0, 0.5, 1]  # Sólo para elasticnet 
                 }

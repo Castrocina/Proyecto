@@ -58,8 +58,8 @@ if __name__ == '__main__':
     y_preprocess_pipeline = crearPipelinePreprocesamientoy()
     y_preprocess_pipeline.fit(y_train)
 
-    X_test = x_preprocess_pipeline.transform(X_train)
-    y_test = y_preprocess_pipeline.transform(y_train)
+    X_test = x_preprocess_pipeline.transform(X_test)
+    y_test = y_preprocess_pipeline.transform(y_test)
     X_val = x_preprocess_pipeline.transform(X_val)
     y_val = y_preprocess_pipeline.transform(y_val)
     X_train = x_preprocess_pipeline.transform(X_train)

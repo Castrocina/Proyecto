@@ -44,6 +44,7 @@ class evaluarModelo():
         plt.xlabel("Predicción")
         plt.ylabel("Real")
         figure.savefig(f"./docs/confusion_matrixes/{tipoModelo}_{tipoDeSetDeDatos}.png")
+        mlflow.log_figure(figure,f"{tipoModelo}_{tipoDeSetDeDatos}.png")
 
     @staticmethod
     def metricasDeRendimiento(y,ypred,tipoDeSetDeDatos):
