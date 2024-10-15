@@ -268,5 +268,5 @@ stages:
       size: 21296
     - path: metricas.json
       hash: md5
-      md5: 68a9f9274a2b18fe8dd0ffb6685bdf3f
-      size: 601
+      md5: cfa1fade9201fa2fac3d910688c52ed9
+      size: 1159
