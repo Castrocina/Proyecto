@@ -1,0 +1,27 @@
+{
+    "data": {
+        "metricas.json": {
+            "data": [
+                {
+                    "XGBoost": {
+                        "entrenamiento": {
+                            "precision_entrenamiento": 0.9965963526346752,
+                            "recall_entrenamiento": 0.9965753424657534,
+                            "f1_entrenamiento": 0.9965730008195762
+                        },
+                        "validacion": {
+                            "precision_validacion": 0.6860744297719088,
+                            "recall_validacion": 0.7142857142857143,
+                            "f1_validacion": 0.698518872431916
+                        },
+                        "prueba": {
+                            "precision_prueba": 0.6476954418130889,
+                            "recall_prueba": 0.6666666666666666,
+                            "f1_prueba": 0.6449374439494848
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

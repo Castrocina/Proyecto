@@ -5,3 +5,4 @@ models
 db_data
 minio_data
 config.env
+docs/confusin_matrixes

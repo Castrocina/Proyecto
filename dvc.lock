@@ -149,8 +149,8 @@ stages:
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: 59b311afb0be299bffe7b1110585c837
-      size: 1889
+      md5: 1f2dceeb566c13d12d510e8cda5f7b44
+      size: 1888
     - path: data/preprocesed/X_test.csv
       hash: md5
       md5: ea4af18b016253b9f75e780d47fc81c2
@@ -172,21 +172,17 @@ stages:
             - l1
             - l2
             C:
-            - 0.001
-            - 0.002
-            - 0.003
-            - 0.004
-            - 0.005
+            - 1
+            - 1.03
+            - 1.003
             solver:
             - saga
           - penalty:
             - elasticnet
             C:
-            - 0.001
-            - 0.002
-            - 0.003
-            - 0.004
-            - 0.005
+            - 1
+            - 1.03
+            - 1.003
             solver:
             - saga
             l1_ratio:
@@ -195,18 +191,12 @@ stages:
             - 1
           grid_xgboost:
             n_estimators:
-            - 50
-            - 100
-            - 200
+            - 270
+            - 280
             - 300
-            - 400
-            - 500
-            - 350
-            - 400
             learning_rate:
-            - 0.001
-            - 0.002
             - 0.003
+            - 0.1
             max_depth:
             - 2
             - 1
@@ -222,12 +212,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: 72c998b62c385feaaf26d376329e147b
-      size: 1624
+      md5: 880c0bfeb241ded2bb34ea616027c6d1
+      size: 1633
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: 88f11dd9bfc519c0e66d67c6fdf42380
-      size: 1575115
+      md5: 4cce4cc6f438ec33c550b17e03cc0752
+      size: 710157
   evaluar-modelos:
     cmd: py ./refactoring/evaluarModelos.py
     deps:
@@ -267,3 +257,8 @@ stages:
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
       size: 135
+    outs:
+    - path: metricas.json
+      hash: md5
+      md5: fdb2aee39dca9d7d17ab4f15c8501892
+      size: 695

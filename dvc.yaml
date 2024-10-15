@@ -71,6 +71,13 @@ stages:
       - ${modelos.path}modeloRegLog.sav
       - ${modelos.path}modeloXGBoost.sav
       - refactoring/loadParams.py
+    metrics:
+      - metricas.json:
+          cache: false
+    plots:
+      - docs/confusion_matrixes/LogRegresion_prueba.png
+      - docs/confusion_matrixes/XGBoost_prueba.png
+
 
 
  

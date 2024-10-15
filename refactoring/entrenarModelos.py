@@ -7,7 +7,7 @@ import pandas as pd
 from loadParams import load_params
 
 def entrenar_modelo(model,param_grid,X_train,y_train):
-        grid_search = GridSearchCV(model, param_grid, cv=10, scoring='accuracy')
+        grid_search = GridSearchCV(model, param_grid, cv=5, scoring='accuracy')
         grid_search.fit(X_train, y_train.ravel())
 
         return grid_search.best_estimator_
