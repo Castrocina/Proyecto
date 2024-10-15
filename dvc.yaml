@@ -54,6 +54,8 @@ stages:
       - ${data.preprocesdePath}X_test.csv
       - ${data.preprocesdePath}y_test.csv
       - refactoring/loadParams.py
+    params:
+      - modelos
     outs:
       - ${modelos.path}/modeloRegLog.sav
       - ${modelos.path}/modeloXGBoost.sav

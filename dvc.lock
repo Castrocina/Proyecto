@@ -149,8 +149,8 @@ stages:
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: 888a2b4ed5b7d206c2a1f85fd80066c3
-      size: 2421
+      md5: 59b311afb0be299bffe7b1110585c837
+      size: 1889
     - path: data/preprocesed/X_test.csv
       hash: md5
       md5: ea4af18b016253b9f75e780d47fc81c2
@@ -163,15 +163,71 @@ stages:
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
       size: 135
+    params:
+      params.yaml:
+        modelos:
+          path: modelos/
+          grid_logistico:
+          - penalty:
+            - l1
+            - l2
+            C:
+            - 0.001
+            - 0.002
+            - 0.003
+            - 0.004
+            - 0.005
+            solver:
+            - saga
+          - penalty:
+            - elasticnet
+            C:
+            - 0.001
+            - 0.002
+            - 0.003
+            - 0.004
+            - 0.005
+            solver:
+            - saga
+            l1_ratio:
+            - 0
+            - 0.5
+            - 1
+          grid_xgboost:
+            n_estimators:
+            - 50
+            - 100
+            - 200
+            - 300
+            - 400
+            - 500
+            - 350
+            - 400
+            learning_rate:
+            - 0.001
+            - 0.002
+            - 0.003
+            max_depth:
+            - 2
+            - 1
+            - 3
+            - 4
+            subsample:
+            - 0.8
+            - 1
+            - 1.5
+            - 2
+            use_label_encoder:
+            - 'False'
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: fd926d5c4115275f73dc7f327a84216f
-      size: 1640
+      md5: 72c998b62c385feaaf26d376329e147b
+      size: 1624
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: 02eb7b3045f42fa0a00c24f5e07030b0
-      size: 266711
+      md5: 88f11dd9bfc519c0e66d67c6fdf42380
+      size: 1575115
   evaluar-modelos:
     cmd: py ./refactoring/evaluarModelos.py
     deps:
@@ -201,12 +257,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: fd926d5c4115275f73dc7f327a84216f
-      size: 1640
+      md5: 72c998b62c385feaaf26d376329e147b
+      size: 1624
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: 02eb7b3045f42fa0a00c24f5e07030b0
-      size: 266711
+      md5: 88f11dd9bfc519c0e66d67c6fdf42380
+      size: 1575115
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
