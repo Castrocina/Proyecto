@@ -172,17 +172,17 @@ stages:
             - l1
             - l2
             C:
-            - 1
-            - 1.005
-            - 1.0003
+            - 2
+            - 2.001
+            - 2.003
             solver:
             - saga
           - penalty:
             - elasticnet
             C:
-            - 1
-            - 1.005
-            - 1.0003
+            - 2
+            - 2.001
+            - 2.003
             solver:
             - saga
             l1_ratio:
@@ -192,11 +192,12 @@ stages:
           grid_xgboost:
             n_estimators:
             - 100
-            - 150
-            - 160
+            - 90
+            - 110
             learning_rate:
             - 0.003
             - 0.1
+            - 0.5
             max_depth:
             - 2
             - 1
@@ -212,8 +213,8 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: c88a6553a7c017adbd713840224c2494
-      size: 1633
+      md5: c4f6c88d3732ba0c3dd43e13e8203f0d
+      size: 1617
     - path: modelos//modeloXGBoost.sav
       hash: md5
       md5: e64b8cea9e3b4da7a3dab5ac5592cee6
@@ -247,8 +248,8 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: c88a6553a7c017adbd713840224c2494
-      size: 1633
+      md5: c4f6c88d3732ba0c3dd43e13e8203f0d
+      size: 1617
     - path: modelos/modeloXGBoost.sav
       hash: md5
       md5: e64b8cea9e3b4da7a3dab5ac5592cee6
@@ -260,13 +261,13 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: d7e96900cfb6205c4c5bc8de88cef52d
-      size: 21857
+      md5: f8948a3581781dc7418a2bf5b129bdbd
+      size: 21692
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
       md5: 081254b3b5ec05dfa451f79dbf8fae20
       size: 21371
     - path: metricas.json
       hash: md5
-      md5: 167df1903b985908c292fb85af4ab975
-      size: 1160
+      md5: 82f149dd4da95383ffc8a685bd74e713
+      size: 1163
