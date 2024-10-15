@@ -17,7 +17,7 @@ def modeloRlog(X_train,y_train):
         param_grid_logistico = [
                 {
                         'penalty': ['l1', 'l2'],
-                        'C': [0.01, 0.06,0.07,0.08,0.04],
+                        'C': [0.01, 0.06,0.07,0.08,0.04,0.05],
                         'solver': ['saga'],
                 },
                 {

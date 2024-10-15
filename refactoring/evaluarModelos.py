@@ -25,9 +25,9 @@ class evaluarModelo():
         y_pred_test = self.modelo.predict(self.X_test)
         y_pred_val = self.modelo.predict(self.X_val)
         y_pred_train = self.modelo.predict(self.X_train)
-        self.matriz_de_confuision(self.y_train,y_pred_train,"entrenamiento")
-        self.matriz_de_confuision(self.y_val,y_pred_val,"validacion")
-        self.matriz_de_confuision(self.y_test,y_pred_test,"prueba")
+        self.matriz_de_confuision(self.y_train,y_pred_train,"entrenamiento",self.tipoModelo)
+        self.matriz_de_confuision(self.y_val,y_pred_val,"validacion",self.tipoModelo)
+        self.matriz_de_confuision(self.y_test,y_pred_test,"prueba",self.tipoModelo)
         self.precision_train,self.recall_train,self.f1_train = self.metricasDeRendimiento(self.y_train,y_pred_train,"entrenamiento")
         self.precision_val,self.recall_val,self.f1_val =self.metricasDeRendimiento(self.y_val,y_pred_val,"validacion")
         self.precision_test,self.recall_test,self.f1_test =self.metricasDeRendimiento(self.y_test,y_pred_test,"prueba")
@@ -35,15 +35,15 @@ class evaluarModelo():
         self.logModeloAMLFlow()
 
     @staticmethod
-    def matriz_de_confuision(y,ypred,tipoDeSetDeDatos):
+    def matriz_de_confuision(y,ypred,tipoDeSetDeDatos,tipoModelo):
         # Matriz de confusión
         cm = confusion_matrix(y, ypred)
-        plt.figure(figsize=(10, 7))
+        figure = plt.figure(figsize=(10, 7))
         sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
         plt.title(f"Matriz de Confusión - Conjunto de {tipoDeSetDeDatos}")
         plt.xlabel("Predicción")
         plt.ylabel("Real")
-        plt.show()
+        figure.savefig(f"./docs/confusion_matrixes/{tipoModelo}_{tipoDeSetDeDatos}.png")
 
     @staticmethod
     def metricasDeRendimiento(y,ypred,tipoDeSetDeDatos):
