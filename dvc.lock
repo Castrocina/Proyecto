@@ -173,16 +173,16 @@ stages:
             - l2
             C:
             - 1
-            - 1.03
-            - 1.003
+            - 1.005
+            - 1.0003
             solver:
             - saga
           - penalty:
             - elasticnet
             C:
             - 1
-            - 1.03
-            - 1.003
+            - 1.005
+            - 1.0003
             solver:
             - saga
             l1_ratio:
@@ -191,9 +191,9 @@ stages:
             - 1
           grid_xgboost:
             n_estimators:
-            - 270
-            - 280
-            - 300
+            - 100
+            - 150
+            - 160
             learning_rate:
             - 0.003
             - 0.1
@@ -212,12 +212,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: a34f2976c3403bfa88120ef578a8adaa
+      md5: c88a6553a7c017adbd713840224c2494
       size: 1633
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: 4cce4cc6f438ec33c550b17e03cc0752
-      size: 710157
+      md5: e64b8cea9e3b4da7a3dab5ac5592cee6
+      size: 265266
   evaluar-modelos:
     cmd: py ./refactoring/evaluarModelos.py
     deps:
@@ -247,12 +247,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: a34f2976c3403bfa88120ef578a8adaa
+      md5: c88a6553a7c017adbd713840224c2494
       size: 1633
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: 4cce4cc6f438ec33c550b17e03cc0752
-      size: 710157
+      md5: e64b8cea9e3b4da7a3dab5ac5592cee6
+      size: 265266
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
@@ -264,9 +264,9 @@ stages:
       size: 21857
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
-      md5: 10e610aa4db897044f8d416f164dceb2
-      size: 21296
+      md5: 081254b3b5ec05dfa451f79dbf8fae20
+      size: 21371
     - path: metricas.json
       hash: md5
-      md5: cfa1fade9201fa2fac3d910688c52ed9
-      size: 1159
+      md5: 167df1903b985908c292fb85af4ab975
+      size: 1160
