@@ -19,7 +19,7 @@ class evaluarModelo():
          self.X_test=X_test
          self.y_test=y_test
          self.tipoModelo = tipoModelo
-         self.metricas = []
+         self.metricas = {"entrenamiento":{},"validacion":{},"prueba":{}}
 
 
     def evaluar(self):
@@ -33,25 +33,15 @@ class evaluarModelo():
         self.precision_train,self.recall_train,self.f1_train = self.metricasDeRendimiento(self.y_train,y_pred_train,"entrenamiento")
         self.precision_val,self.recall_val,self.f1_val =self.metricasDeRendimiento(self.y_val,y_pred_val,"validacion")
         self.precision_test,self.recall_test,self.f1_test =self.metricasDeRendimiento(self.y_test,y_pred_test,"prueba")
-        self.metricas.append({
-            self.tipoModelo:{
-                "entrenamiento":{
-                    'precision_entrenamiento': self.precision_train,
-                    'recall_entrenamiento': self.recall_train,
-                    'f1_entrenamiento': self.f1_train
-                },
-                "validacion":{
-                    'precision_validacion': self.precision_val,
-                    'recall_validacion': self.recall_val,
-                    'f1_validacion': self.f1_val
-                },
-                "prueba":{
-                    'precision_prueba': self.precision_test,
-                    'recall_prueba': self.recall_test,
-                    'f1_prueba': self.f1_test
-                }
-            }
-        })
+        self.metricas["entrenamiento"][f"{self.tipoModelo}_precision_entrenamiento"] = self.precision_train
+        self.metricas["entrenamiento"][f"{self.tipoModelo}_recall_entrenamiento"] = self.recall_train
+        self.metricas["entrenamiento"][f"{self.tipoModelo}_f1_entrenamiento"] = self.f1_train
+        self.metricas["validacion"][f"{self.tipoModelo}_precision_validacion"] = self.precision_val
+        self.metricas["validacion"][f"{self.tipoModelo}_recall_validacion"] = self.recall_val
+        self.metricas["validacion"][f"{self.tipoModelo}_f1_validacion"] = self.f1_val
+        self.metricas["prueba"][f"{self.tipoModelo}_precision_prueba"] = self.precision_test
+        self.metricas["prueba"][f"{self.tipoModelo}_recall_prueba"] = self.recall_test
+        self.metricas["prueba"][f"{self.tipoModelo}_f1_prueba"] = self.f1_test
         self.logModeloAMLFlow()
 
     @staticmethod
@@ -94,14 +84,7 @@ class evaluarModelo():
         mlflow.log_metric(f'recall prueba {self.tipoModelo}',self.recall_test)
         mlflow.log_metric(f'f1 prueba {self.tipoModelo}',self.f1_test)
         mlflow.sklearn.log_model(self.modelo, f"{self.tipoModelo}_model")
-        full_json={
-            'data':{
-                "metricas.json":{
-                    'data': self.metricas
-                }
-            }
-        }
-        json_object = json.dumps(full_json, indent=4)
+        json_object = json.dumps(self.metricas, indent=4)
         with open("metricas.json", "w") as outfile:
             outfile.write(json_object)
 
