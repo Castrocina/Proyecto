@@ -1,13 +1,13 @@
 stages:
   download_data:
-    cmd: py ./refactoring/descargarDatadeZipACSV.py
+    cmd: python ./refactoring/descargarDatadeZipACSV.py
     deps:
       - refactoring/descargarDatadeZipACSV.py
       - refactoring/loadParams.py
     outs:
       - ${data.downloadPath}/${data.cirrhosisNombreArchivo}.csv
   load_Data:
-    cmd: py ./refactoring/cargarData.py
+    cmd: python ./refactoring/cargarData.py
     deps:
       - ./refactoring/cargarData.py
       - ./refactoring/EDA.py
@@ -16,7 +16,7 @@ stages:
     outs:
       - ${data.basePath}/${data.cirrhosisNombreArchivo}.csv
   split_Data:
-    cmd: py ./refactoring/splitData.py
+    cmd: python ./refactoring/splitData.py
     deps: 
       - ./refactoring/splitData.py
       -  ${data.basePath}/${data.cirrhosisNombreArchivo}.csv
@@ -30,7 +30,7 @@ stages:
       - ${data.basePath}/X_train.csv
       - ${data.basePath}/y_train.csv
   pre_process:
-    cmd: py ./refactoring/preprocess.py
+    cmd: python ./refactoring/preprocess.py
     deps: 
       - ./refactoring/preprocess.py
       - ${data.basePath}X_test.csv
@@ -48,7 +48,7 @@ stages:
       - ${data.preprocesdePath}X_train.csv
       - ${data.preprocesdePath}y_train.csv
   entrenar-modelos:
-    cmd: py ./refactoring/entrenarModelos.py
+    cmd: python ./refactoring/entrenarModelos.py
     deps: 
       - ./refactoring/entrenarModelos.py
       - ${data.preprocesdePath}X_test.csv
@@ -60,7 +60,7 @@ stages:
       - ${modelos.path}/modeloRegLog.sav
       - ${modelos.path}/modeloXGBoost.sav
   evaluar-modelos:
-    cmd: py ./refactoring/evaluarModelos.py
+    cmd: python ./refactoring/evaluarModelos.py
     deps: 
       - ${data.preprocesdePath}X_test.csv
       - ${data.preprocesdePath}y_test.csv
