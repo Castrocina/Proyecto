@@ -9,19 +9,19 @@ modelos:
   path: "modelos/"
   grid_logistico: [{
                         'penalty': ['l1', 'l2'],
-                        'C': [2,2,2,5,10],
+                        'C': [2,2,2,2,2],
                         'solver': ['saga'],
-                        'random_state': [42]
+                        'random_state': [45]
                 },
                 {
                        'penalty': ['elasticnet'],
-                        'C': [2,2,2,5,10],
+                        'C': [2,2,2,2,2],
                         'solver': ['saga'],
                         'l1_ratio': [0.2, 0.4, 0.6, 0.8 ]  # Sólo para elasticnet 
                 }]
   grid_xgboost: {
-        'n_estimators': [100, 110, 120, 150],
-        'learning_rate': [0.003,0.1,0.6],
+        'n_estimators': [100, 150, 200],
+        'learning_rate': [0.003,0.5,0.5],
         'max_depth': [1,2,3,4,5],
         'subsample': [0.6,0.7,0.8],
         'use_label_encoder':["False"]
