@@ -1,0 +1,26 @@
+{
+    "entrenamiento": {
+        "LogRegresion_precision_entrenamiento": 0.8051720238960169,
+        "LogRegresion_recall_entrenamiento": 0.8082191780821918,
+        "LogRegresion_f1_entrenamiento": 0.7990450318803645,
+        "XGBoost_precision_entrenamiento": 0.9394910646373515,
+        "XGBoost_recall_entrenamiento": 0.9383561643835616,
+        "XGBoost_f1_entrenamiento": 0.938137622094855
+    },
+    "validacion": {
+        "LogRegresion_precision_validacion": 0.7144264949142999,
+        "LogRegresion_recall_validacion": 0.7619047619047619,
+        "LogRegresion_f1_validacion": 0.7347898732338092,
+        "XGBoost_precision_validacion": 0.6791979949874686,
+        "XGBoost_recall_validacion": 0.7142857142857143,
+        "XGBoost_f1_validacion": 0.6960208741030658
+    },
+    "prueba": {
+        "LogRegresion_precision_prueba": 0.708994708994709,
+        "LogRegresion_recall_prueba": 0.746031746031746,
+        "LogRegresion_f1_prueba": 0.7215007215007215,
+        "XGBoost_precision_prueba": 0.6476954418130889,
+        "XGBoost_recall_prueba": 0.6666666666666666,
+        "XGBoost_f1_prueba": 0.6449374439494848
+    }
+}

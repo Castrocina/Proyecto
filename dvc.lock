@@ -173,8 +173,8 @@ stages:
             - l2
             C:
             - 2
-            - 3
-            - 4
+            - 2
+            - 2
             - 5
             - 10
             solver:
@@ -185,8 +185,8 @@ stages:
             - elasticnet
             C:
             - 2
-            - 3
-            - 4
+            - 2
+            - 2
             - 5
             - 10
             solver:
@@ -198,14 +198,14 @@ stages:
             - 0.8
           grid_xgboost:
             n_estimators:
-            - 80
-            - 90
             - 100
             - 110
+            - 120
+            - 150
             learning_rate:
             - 0.003
-            - 0.002
-            - 0.001
+            - 0.1
+            - 0.6
             max_depth:
             - 1
             - 2
@@ -221,12 +221,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: 66051b201d34fcdc1a5b9bf48833cdd7
+      md5: c80644e9910d113e517a0ab150f8819b
       size: 1633
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: ec8f22085cdd5aa92fc0a10d91f3b795
-      size: 324405
+      md5: aa93f5f6bf7e9c1a83903f22351548a8
+      size: 292677
   evaluar-modelos:
     cmd: py ./refactoring/evaluarModelos.py
     deps:
@@ -256,12 +256,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 71e9ab6e132995796d4c31b3351ab608
+      md5: c80644e9910d113e517a0ab150f8819b
       size: 1633
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: ec8f22085cdd5aa92fc0a10d91f3b795
-      size: 324405
+      md5: aa93f5f6bf7e9c1a83903f22351548a8
+      size: 292677
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
@@ -273,9 +273,9 @@ stages:
       size: 21744
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
-      md5: 66519cf92229ac5de3e1dad7ef7a83e5
-      size: 21556
+      md5: 10e610aa4db897044f8d416f164dceb2
+      size: 21296
     - path: metricas.json
       hash: md5
-      md5: 52f17a3e768747dc9a05339e990d143f
-      size: 1159
+      md5: ea7d278d5a87d8f372cc036b82619f2c
+      size: 1160
