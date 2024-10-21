@@ -174,15 +174,14 @@ stages:
             - elasticnet
             C:
             - 0.01
-            - 0.1
-            - 1
-            - 10
+            - 0.2
+            - 3
             solver:
             - saga
             - lbfgs
             max_iter:
             - 200
-            - 500
+            - 250
             tol:
             - 0.0001
             - 0.001
@@ -192,54 +191,52 @@ stages:
           - penalty:
             - elasticnet
             C:
-            - 2
-            - 2.001
-            - 2.003
+            - 1
+            - 6.001
             solver:
             - saga
             l1_ratio:
             - 0
-            - 0.5
-            - 1
+            - 1.6
             class_weight:
             - balanced
           grid_xgboost:
             n_estimators:
             - 100
-            - 200
+            - 300
             learning_rate:
             - 0.01
             - 0.05
-            - 0.1
+            - 1
             max_depth:
             - 2
-            - 3
+            - 6
             subsample:
             - 0.6
-            - 0.8
+            - 1
             colsample_bytree:
             - 0.6
-            - 0.8
+            - 1
             min_child_weight:
             - 1
-            - 5
+            - 10
             lambda:
             - 1
-            - 5
+            - 10
             alpha:
             - 0
-            - 1
+            - 10
             use_label_encoder:
             - 'False'
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: e7f9862d960490dbbeeb7cc8a2d7b89e
-      size: 1636
+      md5: 387b7aabfdebc5d3816e3fdb2ee63370
+      size: 1643
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: 683129990444adee7fb4c71c9ca68fc7
-      size: 321226
+      md5: c190bf930984bdf4f5d2352598345278
+      size: 786194
   evaluar-modelos:
     cmd: python ./refactoring/evaluarModelos.py
     deps:
@@ -269,12 +266,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: e7f9862d960490dbbeeb7cc8a2d7b89e
-      size: 1636
+      md5: 387b7aabfdebc5d3816e3fdb2ee63370
+      size: 1643
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: 683129990444adee7fb4c71c9ca68fc7
-      size: 321226
+      md5: c190bf930984bdf4f5d2352598345278
+      size: 786194
     - path: refactoring/loadParams.py
       hash: md5
       md5: f8d1ebd660f7f2e55128278ecc68ff47
@@ -282,13 +279,13 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: 8bf45af31bd8f98a76efbac49f99ba66
-      size: 20507
+      md5: c12255b4d8d1e6893f9cca24512bd691
+      size: 20562
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
-      md5: 36cbef082c455ee71146f75ba9f71640
-      size: 21181
+      md5: 1b96e7cf1b0549f35239df0739275814
+      size: 21459
     - path: metricas.json
       hash: md5
-      md5: 4c8f4d048ef03bdd0afec38a87395bc0
-      size: 1162
+      md5: 804702ab57e3fa6675af7557476ea589
+      size: 1156

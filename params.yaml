@@ -9,28 +9,28 @@ modelos:
   path: "modelos/"
   grid_logistico: [{
                         'penalty': ['l1', 'l2', 'elasticnet'],
-                        'C': [0.01, 0.1, 1, 10],
+                        'C': [0.01, 0.2, 3],
                         'solver': ['saga', 'lbfgs'],
-                        'max_iter': [200, 500],
+                        'max_iter': [200, 250],
                         'tol': [1e-4, 1e-3],
                         'multi_class': ['ovr', 'multinomial']
                 },
                 {
                         'penalty': ['elasticnet'],
-                        'C': [2, 2.001, 2.003],
+                        'C': [1, 6.001],
                         'solver': ['saga'],
-                        'l1_ratio': [0, 0.5, 1],
+                        'l1_ratio': [0, 1.6],
                         'class_weight': ['balanced']
                 }]
   grid_xgboost: {
-        'n_estimators': [100, 200],
-        'learning_rate': [0.01, 0.05, 0.1],
-        'max_depth': [2, 3],
-        'subsample': [0.6, 0.8],
-        'colsample_bytree': [0.6, 0.8],
-        'min_child_weight': [1, 5],
-        'lambda': [1, 5],
-        'alpha': [0, 1],
+        'n_estimators': [100, 300],
+        'learning_rate': [0.01, 0.05, 1],
+        'max_depth': [2, 6],
+        'subsample': [0.6, 1],
+        'colsample_bytree': [0.6, 1],
+        'min_child_weight': [1, 10],
+        'lambda': [1, 10],
+        'alpha': [0, 10],
         'use_label_encoder':["False"]
     }
 
