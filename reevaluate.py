@@ -1,8 +1,13 @@
 import mlflow
+import sys
+
+
 
 mlflow.set_tracking_uri("http://127.0.0.1:5000")
 
-run_id = "66260eb5964d48af9ed8d458ee34483d"
+run_name = sys.argv[0]
+
+mlflow.search_runs(filter_string="run_name='my_run'")['run_id']
 
 logged_model = f'mlflow-artifacts:/1/{run_id}/artifacts/LogRegresion_model'
 

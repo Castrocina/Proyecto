@@ -135,7 +135,7 @@ def logDataInMlflow(dataframe,context):
     dataset = mlflow.data.from_pandas(
         dataframe, source="cirrhosis.csv", name=f"cirrhosis preprocesed {context}"
     )
-    mlflow.log_input(dataset,context="train_input")
+    mlflow.log_input(dataset,context=context)
 
         
 
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
         mlflow.sklearn.log_model(x_preprocess_pipeline, "X_preprocess_pipeline")
         mlflow.sklearn.log_model(y_preprocess_pipeline, "y_preprocess_pipeline")
-        
+
         evaluarLogReg = evaluarModelo(modeloRLog,X_train,y_train,X_val,y_val,X_test,y_test,"LogRegresion",True)
         evaluarXGBoost = evaluarModelo(modeloXGBoost,X_train,y_train,X_val,y_val,X_test,y_test,"XGBoost",True)
         evaluarLogReg.evaluar()

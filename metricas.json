@@ -1,24 +1,24 @@
 {
     "entrenamiento": {
-        "LogRegresion_precision_entrenamiento": 0.7592233679562447,
-        "LogRegresion_recall_entrenamiento": 0.7054794520547946,
-        "LogRegresion_f1_entrenamiento": 0.7222400984721998,
+        "LogRegresion_precision_entrenamiento": 0.7677714715268579,
+        "LogRegresion_recall_entrenamiento": 0.7226027397260274,
+        "LogRegresion_f1_entrenamiento": 0.7354133636162482,
         "XGBoost_precision_entrenamiento": 0.960833371258666,
         "XGBoost_recall_entrenamiento": 0.958904109589041,
         "XGBoost_f1_entrenamiento": 0.958676898904215
     },
     "validacion": {
-        "LogRegresion_precision_validacion": 0.731286075036075,
-        "LogRegresion_recall_validacion": 0.6666666666666666,
-        "LogRegresion_f1_validacion": 0.6912651748472644,
+        "LogRegresion_precision_validacion": 0.6740911418330773,
+        "LogRegresion_recall_validacion": 0.6349206349206349,
+        "LogRegresion_f1_validacion": 0.6517556517556518,
         "XGBoost_precision_validacion": 0.6657509157509157,
         "XGBoost_recall_validacion": 0.6984126984126984,
         "XGBoost_f1_validacion": 0.6815828303152247
     },
     "prueba": {
-        "LogRegresion_precision_prueba": 0.711791084461892,
-        "LogRegresion_recall_prueba": 0.6825396825396826,
-        "LogRegresion_f1_prueba": 0.69575244669112,
+        "LogRegresion_precision_prueba": 0.7476615646258503,
+        "LogRegresion_recall_prueba": 0.7142857142857143,
+        "LogRegresion_f1_prueba": 0.7291464754151322,
         "XGBoost_precision_prueba": 0.6968130921619293,
         "XGBoost_recall_prueba": 0.7142857142857143,
         "XGBoost_f1_prueba": 0.6955636955636956
