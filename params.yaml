@@ -26,7 +26,11 @@ modelos:
         'use_label_encoder':["False"]
     }
 
+pipelines:
+  path: "pipelines/"
+
 
 mlflow:
   experiment_name: "Cirrhosis V1"
   tracking_uri: "http://127.0.0.1:5000"
+  run_name: "Run 1 fase 3"

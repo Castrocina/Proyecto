@@ -47,6 +47,8 @@ stages:
       - ${data.preprocesdePath}y_val.csv
       - ${data.preprocesdePath}X_train.csv
       - ${data.preprocesdePath}y_train.csv
+      - ${pipelines.path}preprocesamiento_X.sav
+      - ${pipelines.path}preprocesamiento_y.sav
   entrenar-modelos:
     cmd: py ./refactoring/entrenarModelos.py
     deps: 
@@ -70,6 +72,8 @@ stages:
       - ${data.preprocesdePath}y_train.csv
       - ${modelos.path}modeloRegLog.sav
       - ${modelos.path}modeloXGBoost.sav
+      - ${pipelines.path}preprocesamiento_X.sav
+      - ${pipelines.path}preprocesamiento_y.sav
       - refactoring/loadParams.py
     metrics:
       - metricas.json:

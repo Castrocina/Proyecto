@@ -5,12 +5,12 @@ stages:
     deps:
     - path: refactoring/descargarDatadeZipACSV.py
       hash: md5
-      md5: 023c1a4e10c2c615fb2cb645ad365f1f
-      size: 997
+      md5: a0fa6469eac8100d409bd2370e94e2d0
+      size: 1886
     - path: refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     outs:
     - path: data/download//cirrhosis.csv
       hash: md5
@@ -21,20 +21,20 @@ stages:
     deps:
     - path: ./refactoring/EDA.py
       hash: md5
-      md5: f460a2a207c714768cb0fc5e6d6ffd74
-      size: 2731
+      md5: d85834c2c88b76a46569834b61749012
+      size: 4622
     - path: ./refactoring/cargarData.py
       hash: md5
-      md5: 43e56392a9cdae6a3187c098c180cd2e
-      size: 695
+      md5: adcaeeab5d0d787e41fedc7a458db6ba
+      size: 1280
     - path: ./refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     - path: data/download//cirrhosis.csv
       hash: md5
       md5: 230a3916291af39603e89042463349ef
-      size: 31860
+      size: 32279
     outs:
     - path: data/base//cirrhosis.csv
       hash: md5
@@ -45,20 +45,20 @@ stages:
     deps:
     - path: ./refactoring/EDA.py
       hash: md5
-      md5: f460a2a207c714768cb0fc5e6d6ffd74
-      size: 2731
+      md5: d85834c2c88b76a46569834b61749012
+      size: 4622
     - path: ./refactoring/splitData.py
       hash: md5
-      md5: f899bf175ae1cbba1843c55417aae799
-      size: 1960
+      md5: eb1de7ec03fb19132e0cd19418a8af30
+      size: 3251
     - path: data/base//cirrhosis.csv
       hash: md5
       md5: 3c8f5d7d2d2d9c2b9c258b500705e11c
       size: 34561
     - path: refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     outs:
     - path: data/base//X_test.csv
       hash: md5
@@ -89,8 +89,8 @@ stages:
     deps:
     - path: ./refactoring/preprocess.py
       hash: md5
-      md5: a1c52df6267b243adb473ebeacc6053e
-      size: 3391
+      md5: 6484f4b9ca69b67b6852726ee527a817
+      size: 5128
     - path: data/base/X_test.csv
       hash: md5
       md5: eef6c7dbcab88cdd047988bdc34db171
@@ -117,8 +117,8 @@ stages:
       size: 201
     - path: refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     outs:
     - path: data/preprocesed/X_test.csv
       hash: md5
@@ -144,13 +144,21 @@ stages:
       hash: md5
       md5: c63eb493adf0302d6a8e5926bdbae343
       size: 192
+    - path: pipelines/preprocesamiento_X.sav
+      hash: md5
+      md5: e5bf11625b1a2fcc7e6ca7ed2ff15975
+      size: 4106
+    - path: pipelines/preprocesamiento_y.sav
+      hash: md5
+      md5: 4ee7f2a3ad4a11b01b9b3fa45be59492
+      size: 255
   entrenar-modelos:
     cmd: py ./refactoring/entrenarModelos.py
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: afe7c2dd81e6af94827963e04624d761
-      size: 1898
+      md5: 4763f472d20dea84d9d9949f9db77ff3
+      size: 4126
     - path: data/preprocesed/X_test.csv
       hash: md5
       md5: ea4af18b016253b9f75e780d47fc81c2
@@ -161,8 +169,8 @@ stages:
       size: 192
     - path: refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     params:
       params.yaml:
         modelos:
@@ -213,7 +221,7 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: c4f6c88d3732ba0c3dd43e13e8203f0d
+      md5: 0784042ea50af06a5eeae874f74266f7
       size: 1617
     - path: modelos//modeloXGBoost.sav
       hash: md5
@@ -248,16 +256,24 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: c4f6c88d3732ba0c3dd43e13e8203f0d
+      md5: 0784042ea50af06a5eeae874f74266f7
       size: 1617
     - path: modelos/modeloXGBoost.sav
       hash: md5
       md5: e64b8cea9e3b4da7a3dab5ac5592cee6
       size: 265266
+    - path: pipelines/preprocesamiento_X.sav
+      hash: md5
+      md5: e5bf11625b1a2fcc7e6ca7ed2ff15975
+      size: 4106
+    - path: pipelines/preprocesamiento_y.sav
+      hash: md5
+      md5: 4ee7f2a3ad4a11b01b9b3fa45be59492
+      size: 255
     - path: refactoring/loadParams.py
       hash: md5
-      md5: f8d1ebd660f7f2e55128278ecc68ff47
-      size: 135
+      md5: c0f9fb2695ac03e485f65a90c02cf622
+      size: 425
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5

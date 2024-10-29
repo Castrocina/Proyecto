@@ -1,11 +1,28 @@
-from EDA import EDA
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
-import pandas as pd
-import sys
-from loadParams import load_params
+# Importar librerias
+from EDA import EDA # Libreria Custom para realizar EDA
+from sklearn.model_selection import train_test_split # Libreria para separar set de datos
+from sklearn.preprocessing import LabelEncoder # libreria para realizar el OneHot encoder
+import pandas as pd # Libreria para manejar archivos de datos
+from loadParams import load_params # Libreria Custom para cargar los parametros del archivo params.yaml
 
 def dividir_datos(datos, test_size=0.3, validation_size=0.5):
+        """
+        Función para separar los datos en entrenamiento, validación y prueba y ejecutar el EDA con los datos de entrenamiento
+
+        Parametros:
+                datos:          Dataframe con los datos a separar
+                test_size:      Porcentaje de los datos que se utilizaran para crear sets de validación y prueba, por default 30%
+                validation_size Porcentaje de datos para validación del porcentaje de datos para utilizar del se de validación y prueba, por default 50% 
+        
+        Returns:
+                X_test:         Data Frame con los datos de entrada de prueba
+                y_test:         Data frame con los datos objetivo de prueba
+                X_val:          Data frame con los datos de entrada de validación
+                y_val:          Data frame con los datos objetivo de validación
+                X_train:        Data frame con los datos de entrada de entrenamiento
+                y_trai:         Data frame con los datos objetivo de validación
+        """
+
         X = datos.drop(columns=["Status", 'ID'])
         y = datos["Status"]
 
