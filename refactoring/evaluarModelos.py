@@ -76,12 +76,14 @@ class evaluarModelo():
         cm = confusion_matrix(y, ypred)
         figure = plt.figure(figsize=(10, 7))
         sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-        plt.title(f"Matriz de Confusión - Conjunto de {tipoDeSetDeDatos}")
+        plt.title(f"Matriz de Confusión - Conjunto de {tipoDeSetDeDatos} {tipoModelo}")
         plt.xlabel("Predicción")
         plt.ylabel("Real")
         if self.logToMLFlow:
             figure.savefig(f"./docs/confusion_matrixes/{tipoModelo}_{tipoDeSetDeDatos}.png")
             mlflow.log_figure(figure,f"{tipoModelo}_{tipoDeSetDeDatos}.png")
+        else:
+            plt.show()
 
     @staticmethod
     def metricasDeRendimiento(y,ypred,tipoDeSetDeDatos):
@@ -116,9 +118,12 @@ class evaluarModelo():
         explainer = shap.Explainer(self.model, Xtest)
         shap_values = explainer(Xtest)
         fig = shap.summary_plot(shap_values, X_test, plot_type="bar", show=not self.logToMLFlow)
+        plt.title(f"Shap {tipoModelo}")
         if self.logToMLFlow:
             fig.savefig(f"./docs/shap_plot/shap_{tipoModelo}.png")
             mlflow.log_figure(fig,f"shap_{tipoModelo}.png")
+        else:
+            plt.show()
 
 
 
@@ -132,9 +137,9 @@ def logDataInMlflow(dataframe,context,source):
             context:    El contexto del conjunto de datos que se esta enviando, por ejemplo pruebas
 
     """
-    dataset = mlflow.data.from_pandas(
-        dataframe, name=f"cirrhosis preprocesed {context}",source=source
-    )
+    print(source)
+    dataset = mlflow.data.from_pandas(dataframe,source=source)
+
     mlflow.log_input(dataset,context=context)
 
         
@@ -171,12 +176,12 @@ if __name__ == '__main__':
     
 
     with mlflow.start_run(experiment_id=experiment.experiment_id,run_name=parametros['mlflow']['run_name']):
-        logDataInMlflow(X_train,"input train",source=preprocesado_path+"X_train.csv")
-        logDataInMlflow(y_train,"target train",source=preprocesado_path+"y_train.csv")
-        logDataInMlflow(X_val,"input val",source=preprocesado_path+"X_val.csv")
-        logDataInMlflow(y_val,"target val",source=preprocesado_path+"y_val.csv")
-        logDataInMlflow(X_test,"input test",source=preprocesado_path+"X_test.csv")
-        logDataInMlflow(y_test,"target test",source=preprocesado_path+"y_test.csv")
+        logDataInMlflow(X_train,"input train",preprocesado_path+"X_train.csv")
+        logDataInMlflow(y_train,"target train",preprocesado_path+"y_train.csv")
+        logDataInMlflow(X_val,"input val",preprocesado_path+"X_val.csv")
+        logDataInMlflow(y_val,"target val",preprocesado_path+"y_val.csv")
+        logDataInMlflow(X_test,"input test",preprocesado_path+"X_test.csv")
+        logDataInMlflow(y_test,"target test",preprocesado_path+"y_test.csv")
 
         mlflow.sklearn.log_model(x_preprocess_pipeline, "X_preprocess_pipeline")
         mlflow.sklearn.log_model(y_preprocess_pipeline, "y_preprocess_pipeline")
