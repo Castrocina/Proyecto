@@ -184,6 +184,8 @@ stages:
             - 0.01
             - 0.2
             - 3
+            - 0.3
+            - 0.4
             solver:
             - saga
             - lbfgs
@@ -212,11 +214,11 @@ stages:
             n_estimators:
             - 100
             - 300
-            - 200
             learning_rate:
             - 0.01
             - 0.05
-            - 1
+            - 0.06
+            - 0.04
             max_depth:
             - 2
             - 6
@@ -240,12 +242,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: d5d6bf34349ba6663e9e001286b5ee28
-      size: 1643
+      md5: 9ca35776e37128ad17e361228adb1c83
+      size: 1636
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: d482f6eb5f26758e69c3422e9ae3e2a8
-      size: 526261
+      md5: f0e888579f8411cb7ef4cc01278e3db1
+      size: 787214
   evaluar-modelos:
     cmd: python ./refactoring/evaluarModelos.py
     deps:
@@ -275,12 +277,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: d5d6bf34349ba6663e9e001286b5ee28
-      size: 1643
+      md5: 9ca35776e37128ad17e361228adb1c83
+      size: 1636
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: d482f6eb5f26758e69c3422e9ae3e2a8
-      size: 526261
+      md5: f0e888579f8411cb7ef4cc01278e3db1
+      size: 787214
     - path: pipelines/preprocesamiento_X.sav
       hash: md5
       md5: e5bf11625b1a2fcc7e6ca7ed2ff15975
@@ -296,13 +298,13 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: 82f1473404eb9ead01820b2923838240
-      size: 20145
+      md5: 371b370e31f061a855eb508cadaf1077
+      size: 21741
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
-      md5: 1b96e7cf1b0549f35239df0739275814
-      size: 21459
+      md5: c3237ea3e14bf22816c0768e9d0f5990
+      size: 23052
     - path: metricas.json
       hash: md5
-      md5: c585616866e7a16b870b146316ff1dad
-      size: 1160
+      md5: 0e17cb016fb1876d29e73c1f9998e8b1
+      size: 1159

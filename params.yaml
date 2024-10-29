@@ -9,7 +9,7 @@ modelos:
   path: "modelos/"
   grid_logistico: [{
                         'penalty': ['l1', 'l2', 'elasticnet'],
-                        'C': [0.01, 0.2, 3],
+                        'C': [0.01, 0.2, 3, 0.3,0.4],
                         'solver': ['saga', 'lbfgs'],
                         'max_iter': [200, 250],
                         'tol': [1e-4, 1e-3],
@@ -23,8 +23,8 @@ modelos:
                         'class_weight': ['balanced']
                 }]
   grid_xgboost: {
-        'n_estimators': [100, 300,200],
-        'learning_rate': [0.01, 0.05, 1],
+        'n_estimators': [100, 300],
+        'learning_rate': [0.01, 0.05, 0.06, 0.04],
         'max_depth': [2, 6],
         'subsample': [0.6, 1],
         'colsample_bytree': [0.6, 1],
@@ -41,4 +41,4 @@ pipelines:
 mlflow:
   experiment_name: "Cirrhosis V1"
   tracking_uri: "http://127.0.0.1:5000"
-  run_name: "Run 2 fase 3"
+  run_name: "Run 3 fase 3"
