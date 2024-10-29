@@ -23,7 +23,7 @@ modelos:
                         'class_weight': ['balanced']
                 }]
   grid_xgboost: {
-        'n_estimators': [100, 300],
+        'n_estimators': [100, 300,200],
         'learning_rate': [0.01, 0.05, 1],
         'max_depth': [2, 6],
         'subsample': [0.6, 1],
@@ -41,4 +41,4 @@ pipelines:
 mlflow:
   experiment_name: "Cirrhosis V1"
   tracking_uri: "http://127.0.0.1:5000"
-  run_name: "Run 1 fase 3"
+  run_name: "Run 2 fase 3"

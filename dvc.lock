@@ -212,6 +212,7 @@ stages:
             n_estimators:
             - 100
             - 300
+            - 200
             learning_rate:
             - 0.01
             - 0.05
@@ -239,12 +240,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: 2ef3ac4886cef6612e73176f19edab69
-      size: 1636
+      md5: d5d6bf34349ba6663e9e001286b5ee28
+      size: 1643
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: c190bf930984bdf4f5d2352598345278
-      size: 786194
+      md5: d482f6eb5f26758e69c3422e9ae3e2a8
+      size: 526261
   evaluar-modelos:
     cmd: python ./refactoring/evaluarModelos.py
     deps:
@@ -274,12 +275,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 2ef3ac4886cef6612e73176f19edab69
-      size: 1636
+      md5: d5d6bf34349ba6663e9e001286b5ee28
+      size: 1643
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: c190bf930984bdf4f5d2352598345278
-      size: 786194
+      md5: d482f6eb5f26758e69c3422e9ae3e2a8
+      size: 526261
     - path: pipelines/preprocesamiento_X.sav
       hash: md5
       md5: e5bf11625b1a2fcc7e6ca7ed2ff15975
@@ -295,13 +296,13 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: 0ff83cdcace8d440edab84cb3a5d96ed
-      size: 20296
+      md5: 82f1473404eb9ead01820b2923838240
+      size: 20145
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
       md5: 1b96e7cf1b0549f35239df0739275814
       size: 21459
     - path: metricas.json
       hash: md5
-      md5: 3da82743fc444e78a991c177fedc6eab
+      md5: c585616866e7a16b870b146316ff1dad
       size: 1160

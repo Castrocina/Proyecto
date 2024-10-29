@@ -123,7 +123,7 @@ class evaluarModelo():
 
 
 
-def logDataInMlflow(dataframe,context):
+def logDataInMlflow(dataframe,context,source):
     """
         Función para loggear los set de datos a MLFlow
 
@@ -133,7 +133,7 @@ def logDataInMlflow(dataframe,context):
 
     """
     dataset = mlflow.data.from_pandas(
-        dataframe, source="cirrhosis.csv", name=f"cirrhosis preprocesed {context}"
+        dataframe, name=f"cirrhosis preprocesed {context}",source=source
     )
     mlflow.log_input(dataset,context=context)
 
@@ -171,12 +171,12 @@ if __name__ == '__main__':
     
 
     with mlflow.start_run(experiment_id=experiment.experiment_id,run_name=parametros['mlflow']['run_name']):
-        logDataInMlflow(X_train,"input train")
-        logDataInMlflow(y_train,"target train")
-        logDataInMlflow(X_val,"input val")
-        logDataInMlflow(y_val,"target val")
-        logDataInMlflow(X_test,"input test")
-        logDataInMlflow(y_test,"target test")
+        logDataInMlflow(X_train,"input train",source=preprocesado_path+"X_train.csv")
+        logDataInMlflow(y_train,"target train",source=preprocesado_path+"y_train.csv")
+        logDataInMlflow(X_val,"input val",source=preprocesado_path+"X_val.csv")
+        logDataInMlflow(y_val,"target val",source=preprocesado_path+"y_val.csv")
+        logDataInMlflow(X_test,"input test",source=preprocesado_path+"X_test.csv")
+        logDataInMlflow(y_test,"target test",source=preprocesado_path+"y_test.csv")
 
         mlflow.sklearn.log_model(x_preprocess_pipeline, "X_preprocess_pipeline")
         mlflow.sklearn.log_model(y_preprocess_pipeline, "y_preprocess_pipeline")
