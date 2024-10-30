@@ -73,7 +73,7 @@ def salvarModelo(modelo,path):
         """
         pickle.dump(modelo, open(path, 'wb'))
 
-if __name__ == '__main__':
+def entrenarModelos():
         parametros = load_params()
         preprocesado_path = parametros["data"]["preprocesdePath"]
         modelos_path = parametros["modelos"]["path"]
@@ -85,6 +85,11 @@ if __name__ == '__main__':
 
         modeloLogRegresion = modeloRlog(X_train,y_train,param_grid_logistico)
         modeloXG = modeloXGboost(X_train,y_train,param_grid_xgboost)
+
+        return modeloLogRegresion,modeloXG,modelos_path
+
+if __name__ == '__main__':
+        modeloLogRegresion,modeloXG,modelos_path = entrenarModelos()
 
         salvarModelo(modeloLogRegresion,modelos_path+"modeloRegLog.sav")
         salvarModelo(modeloXG,modelos_path+"modeloXGBoost.sav")

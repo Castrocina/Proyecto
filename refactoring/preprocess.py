@@ -37,7 +37,7 @@ def crearPipelinePreprocesamientoX():
         columnas_categoricas = ["Drug", "Sex", "Ascites", "Hepatomegaly", "Spiders", "Edema", "Stage"]
         pipeline_numerico_skew = Pipeline(steps=[
             ('imputador', SimpleImputer(strategy='median')),
-            ('log_transform', FunctionTransformer(np.log1p, validate=False)),
+            ('log_transform', FunctionTransformer(np.log1p, validate=False,feature_names_out='one-to-one')),
             ('escalador', StandardScaler())
         ])
         pipeline_numerico_no_skew = Pipeline(steps=[
@@ -52,7 +52,7 @@ def crearPipelinePreprocesamientoX():
             ('num_skew', pipeline_numerico_skew, columnas_numericas_skew),
             ('num_no_skew', pipeline_numerico_no_skew, columnas_numericas_no_skew),
             ('cat', pipeline_categorico, columnas_categoricas)
-        ], remainder='passthrough')
+        ], remainder='passthrough',verbose_feature_names_out=False)
 
         return transformador_columnas
 
@@ -64,13 +64,9 @@ def crearPipelinePreprocesamientoy():
     label_encoder = LabelEncoder()
     return label_encoder
 
-
-if __name__ == '__main__':
+def load_data():
     parametros = load_params()
     base_path=parametros["data"]["basePath"]
-    preprocesado_path = parametros["data"]["preprocesdePath"]
-    path_pipelines = parametros["pipelines"]["path"]
-
 
     X_test = pd.read_csv(base_path+"X_test.csv")
     y_test = pd.read_csv(base_path+"y_test.csv").values.ravel()
@@ -79,26 +75,40 @@ if __name__ == '__main__':
     X_train = pd.read_csv(base_path+"X_train.csv")
     y_train = pd.read_csv(base_path+"y_train.csv").values.ravel()
 
+    return X_test,y_test,X_val,y_val,X_train,y_train,parametros
+     
+
+def preprocess(X_test,y_test,X_val,y_val,X_train,y_train):
+
     x_preprocess_pipeline = crearPipelinePreprocesamientoX()
     x_preprocess_pipeline.fit(X_train)
     y_preprocess_pipeline = crearPipelinePreprocesamientoy()
     y_preprocess_pipeline.fit(y_train)
-    
+
+    X_test_preprocesed = x_preprocess_pipeline.transform(X_test)
+    y_test_preprocesed = y_preprocess_pipeline.transform(y_test)
+    X_val_preprocesed = x_preprocess_pipeline.transform(X_val)
+    y_val_preprocesed = y_preprocess_pipeline.transform(y_val)
+    X_train_preprocesed = x_preprocess_pipeline.transform(X_train)
+    y_train_preprocesed = y_preprocess_pipeline.transform(y_train)
+
+    return X_test_preprocesed,y_test_preprocesed,X_val_preprocesed,y_val_preprocesed,X_train_preprocesed,y_train_preprocesed,x_preprocess_pipeline,y_preprocess_pipeline
+
+
+if __name__ == '__main__':
+    X_test,y_test,X_val,y_val,X_train,y_train,parametros = load_data()
+    X_test_preprocesed,y_test_preprocesed,X_val_preprocesed,y_val_preprocesed,X_train_preprocesed,y_train_preprocesed,x_preprocess_pipeline,y_preprocess_pipeline = preprocess(X_test,y_test,X_val,y_val,X_train,y_train)
+    preprocesado_path = parametros["data"]["preprocesdePath"]
+    path_pipelines = parametros["pipelines"]["path"]
+
     pickle.dump(x_preprocess_pipeline, open(path_pipelines+"preprocesamiento_X.sav", 'wb'))
     pickle.dump(y_preprocess_pipeline, open(path_pipelines+"preprocesamiento_y.sav", 'wb'))
 
-    X_test = x_preprocess_pipeline.transform(X_test)
-    y_test = y_preprocess_pipeline.transform(y_test)
-    X_val = x_preprocess_pipeline.transform(X_val)
-    y_val = y_preprocess_pipeline.transform(y_val)
-    X_train = x_preprocess_pipeline.transform(X_train)
-    y_train = y_preprocess_pipeline.transform(y_train)
-
-    pd.DataFrame(X_train).to_csv(preprocesado_path+"X_train.csv", index=False)
-    pd.DataFrame(y_train).to_csv(preprocesado_path+"y_train.csv", index=False)
-    pd.DataFrame(X_val).to_csv(preprocesado_path+"X_val.csv", index=False)
-    pd.DataFrame(y_val).to_csv(preprocesado_path+"y_val.csv", index=False)
-    pd.DataFrame(X_test).to_csv(preprocesado_path+"X_test.csv", index=False)
-    pd.DataFrame(y_test).to_csv(preprocesado_path+"y_test.csv", index=False)
+    pd.DataFrame(X_train_preprocesed).to_csv(preprocesado_path+"X_train.csv", index=False)
+    pd.DataFrame(y_train_preprocesed).to_csv(preprocesado_path+"y_train.csv", index=False)
+    pd.DataFrame(X_val_preprocesed).to_csv(preprocesado_path+"X_val.csv", index=False)
+    pd.DataFrame(y_val_preprocesed).to_csv(preprocesado_path+"y_val.csv", index=False)
+    pd.DataFrame(X_test_preprocesed).to_csv(preprocesado_path+"X_test.csv", index=False)
+    pd.DataFrame(y_test_preprocesed).to_csv(preprocesado_path+"y_test.csv", index=False)
 
 

@@ -40,3 +40,25 @@ Start again `docker-compose --env-file config.env up -d --build`
 ______________________________________________
 
 `docker-compose -f --env-file config.env up -d --build`
+
+
+--------------------------------------------
+
+Para replicar un ejemploo hay que hacer los siguientes pasos.
+
+git checkout <ID_Commit> Debe ser el commit ID de la prueba que queremos replicar, sino la rama de la prueba que queremos replicar
+ejecutar el comando python .\reevaluate.pyaluate.py "<RUN_name>" El nombre de la corrida que queremos replicar, el nombre se seta en  los parametros, en cada nueva corrida no olvidar de actualizar este parametro y también hacer el commit despues del dvc push con el nombre de la corrida o lsa rama que se llame igual de la corrida para poder replicar sin problemas
+
+---------------------------------------------
+
+Para ejecutar las pruebas el siguiente commando se debe de ejecutar
+
+pytest -s -W ignore 
+
+Las puruebas codificadas por ahora son 
+test de datos de entrada
+test de preprocesamiento
+test de calidad del modelo
+
+Las pruebas funcionan a partir del commit de unittest
+

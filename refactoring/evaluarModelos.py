@@ -142,11 +142,7 @@ def logDataInMlflow(dataframe,context,source):
 
     mlflow.log_input(dataset,context=context)
 
-        
-
-
-
-if __name__ == '__main__':
+def cargarModelosyDatos():
     parametros = load_params()
     preprocesado_path = parametros["data"]["preprocesdePath"]
     modelos_path = parametros["modelos"]["path"]
@@ -170,6 +166,17 @@ if __name__ == '__main__':
 
     with open(pipelines_path+'preprocesamiento_y.sav', 'rb') as f:
         y_preprocess_pipeline = pickle.load(f)
+
+    
+    return X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline
+
+        
+
+
+
+if __name__ == '__main__':
+    parametros = load_params()
+    X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline = cargarModelosyDatos()
 
     mlflow.set_tracking_uri(parametros['mlflow']['tracking_uri'])
     experiment = mlflow.set_experiment(parametros['mlflow']['experiment_name'])
