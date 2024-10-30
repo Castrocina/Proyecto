@@ -181,7 +181,6 @@ stages:
             - l2
             - elasticnet
             C:
-            - 0.01
             - 0.2
             - 3
             - 0.3
@@ -201,8 +200,10 @@ stages:
           - penalty:
             - elasticnet
             C:
-            - 1
-            - 6.001
+            - 0.2
+            - 3
+            - 0.3
+            - 0.4
             solver:
             - saga
             l1_ratio:
@@ -213,9 +214,9 @@ stages:
           grid_xgboost:
             n_estimators:
             - 100
-            - 300
+            - 200
             learning_rate:
-            - 0.01
+            - 0.02
             - 0.05
             - 0.06
             - 0.04
@@ -242,12 +243,12 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: 9ca35776e37128ad17e361228adb1c83
-      size: 1636
+      md5: 80a78e269533b809fef5c46e7e94b56f
+      size: 1643
     - path: modelos//modeloXGBoost.sav
       hash: md5
-      md5: f0e888579f8411cb7ef4cc01278e3db1
-      size: 787214
+      md5: 11d53a3680b209f87d55499e5ae10f84
+      size: 525853
   evaluar-modelos:
     cmd: python ./refactoring/evaluarModelos.py
     deps:
@@ -277,12 +278,12 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: 9ca35776e37128ad17e361228adb1c83
-      size: 1636
+      md5: 80a78e269533b809fef5c46e7e94b56f
+      size: 1643
     - path: modelos/modeloXGBoost.sav
       hash: md5
-      md5: f0e888579f8411cb7ef4cc01278e3db1
-      size: 787214
+      md5: 11d53a3680b209f87d55499e5ae10f84
+      size: 525853
     - path: pipelines/preprocesamiento_X.sav
       hash: md5
       md5: e5bf11625b1a2fcc7e6ca7ed2ff15975
@@ -298,13 +299,13 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: 371b370e31f061a855eb508cadaf1077
-      size: 21741
+      md5: bb0f77f7ec9fb1db3ee5d35e25635719
+      size: 21332
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
       md5: c3237ea3e14bf22816c0768e9d0f5990
       size: 23052
     - path: metricas.json
       hash: md5
-      md5: 0e17cb016fb1876d29e73c1f9998e8b1
-      size: 1159
+      md5: 3dcaab6eba241d1e579ac0038885e7d2
+      size: 1163

@@ -17,8 +17,7 @@ def cargar_datos(csvpath):
         EDA.explorarDataFrame(datos)
         return datos
 
-# Sección de código que se ejecuta al ejecutar este archivo
-if __name__ == '__main__':
+def cargarData():
         parametros = load_params()
         base_path=parametros["data"]["basePath"]
         path_descarga=parametros["data"]["downloadPath"]
@@ -28,3 +27,10 @@ if __name__ == '__main__':
 
         datos = cargar_datos(archivo_csv_descargado)
         datos.to_csv(archivo_csv_base,index=False)
+        return datos
+
+
+
+# Sección de código que se ejecuta al ejecutar este archivo
+if __name__ == '__main__':
+        cargarData()

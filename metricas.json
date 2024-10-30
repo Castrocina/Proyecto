@@ -1,24 +1,24 @@
 {
     "entrenamiento": {
-        "LogRegresion_precision_entrenamiento": 0.7428593057987435,
-        "LogRegresion_recall_entrenamiento": 0.708904109589041,
-        "LogRegresion_f1_entrenamiento": 0.7180206607834683,
-        "XGBoost_precision_entrenamiento": 0.9304354532918396,
-        "XGBoost_recall_entrenamiento": 0.928082191780822,
-        "XGBoost_f1_entrenamiento": 0.9274192464212994
+        "LogRegresion_precision_entrenamiento": 0.7844013211643285,
+        "LogRegresion_recall_entrenamiento": 0.7123287671232876,
+        "LogRegresion_f1_entrenamiento": 0.7334449588690057,
+        "XGBoost_precision_entrenamiento": 0.9341003233894117,
+        "XGBoost_recall_entrenamiento": 0.9315068493150684,
+        "XGBoost_f1_entrenamiento": 0.9310255034404393
     },
     "validacion": {
-        "LogRegresion_precision_validacion": 0.678476695718075,
-        "LogRegresion_recall_validacion": 0.6349206349206349,
-        "LogRegresion_f1_validacion": 0.6515740740740741,
-        "XGBoost_precision_validacion": 0.6825396825396826,
-        "XGBoost_recall_validacion": 0.7142857142857143,
-        "XGBoost_f1_validacion": 0.6974789915966386
+        "LogRegresion_precision_validacion": 0.7033327920027427,
+        "LogRegresion_recall_validacion": 0.6190476190476191,
+        "LogRegresion_f1_validacion": 0.6508520074696544,
+        "XGBoost_precision_validacion": 0.6657509157509157,
+        "XGBoost_recall_validacion": 0.6984126984126984,
+        "XGBoost_f1_validacion": 0.6815828303152247
     },
     "prueba": {
-        "LogRegresion_precision_prueba": 0.7181337181337182,
-        "LogRegresion_recall_prueba": 0.6984126984126984,
-        "LogRegresion_f1_prueba": 0.707376283846872,
+        "LogRegresion_precision_prueba": 0.7716978458049887,
+        "LogRegresion_recall_prueba": 0.7142857142857143,
+        "LogRegresion_f1_prueba": 0.7368012544984827,
         "XGBoost_precision_prueba": 0.6968130921619293,
         "XGBoost_recall_prueba": 0.7142857142857143,
         "XGBoost_f1_prueba": 0.6955636955636956
