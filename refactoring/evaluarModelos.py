@@ -168,7 +168,7 @@ def cargarModelosyDatos():
         y_preprocess_pipeline = pickle.load(f)
 
     
-    return X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline
+    return X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline,preprocesado_path
 
         
 
@@ -176,7 +176,7 @@ def cargarModelosyDatos():
 
 if __name__ == '__main__':
     parametros = load_params()
-    X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline = cargarModelosyDatos()
+    X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline,preprocesado_path = cargarModelosyDatos()
 
     mlflow.set_tracking_uri(parametros['mlflow']['tracking_uri'])
     experiment = mlflow.set_experiment(parametros['mlflow']['experiment_name'])

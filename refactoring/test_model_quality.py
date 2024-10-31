@@ -2,7 +2,7 @@ import pytest
 from evaluarModelos import cargarModelosyDatos
 import numpy as np
 from sklearn.metrics import precision_score
-X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline = cargarModelosyDatos()
+X_train,y_train,X_val,y_val,X_test,y_test,modeloRLog,modeloXGBoost,x_preprocess_pipeline,y_preprocess_pipeline,preprocesado_path = cargarModelosyDatos()
 #total_pred = np.append(np.append(y_test,y_val),y_train)
 
 

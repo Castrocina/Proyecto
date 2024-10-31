@@ -1,6 +1,5 @@
 import pytest
 from cargarData import cargarData
-from loadParams import load_params
 from cirrhosis_schema import cirrhosis_schema
 import numpy as np
 
