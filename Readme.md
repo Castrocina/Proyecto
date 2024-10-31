@@ -61,4 +61,4 @@ test de preprocesamiento
 test de calidad del modelo
 
 Las pruebas funcionan a partir del commit de unittest
-
+De igual manera a partir del commit de Run 5 fase 3 se agrego el unit testing al pipeline de devc, por lo que al ejecutar dvc repro, se ejecuta el testing una vez que se contruye el modelo.
