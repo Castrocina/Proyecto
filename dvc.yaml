@@ -75,6 +75,7 @@ stages:
       - ${pipelines.path}preprocesamiento_X.sav
       - ${pipelines.path}preprocesamiento_y.sav
       - refactoring/loadParams.py
+      - refactoring/evaluarModelos.py
     metrics:
       - metricas.json:
           cache: false
@@ -106,6 +107,10 @@ stages:
       - ${modelos.path}modeloXGBoost.sav
       - ${pipelines.path}preprocesamiento_X.sav
       - ${pipelines.path}preprocesamiento_y.sav
+      - refactoring/test_inputData.py
+      - refactoring/test_feature_engeneering.py
+      - refactoring/test_model_settings.py
+      - refactoring/test_model_quality.py
 
 
 

@@ -157,8 +157,8 @@ stages:
     deps:
     - path: ./refactoring/entrenarModelos.py
       hash: md5
-      md5: b646980b31918f4f85a56a4ea67fe2dc
-      size: 4281
+      md5: 8b3837cee61b7462d9f56e1b68624846
+      size: 4520
     - path: data/preprocesed/X_test.csv
       hash: md5
       md5: ea4af18b016253b9f75e780d47fc81c2
@@ -241,7 +241,7 @@ stages:
     outs:
     - path: modelos//modeloRegLog.sav
       hash: md5
-      md5: ccded058c9f96d368ad143380a2b2939
+      md5: eec9ab6486b9ad87e144a75291528bbc
       size: 1643
     - path: modelos//modeloXGBoost.sav
       hash: md5
@@ -276,7 +276,7 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: ccded058c9f96d368ad143380a2b2939
+      md5: eec9ab6486b9ad87e144a75291528bbc
       size: 1643
     - path: modelos/modeloXGBoost.sav
       hash: md5
@@ -290,6 +290,10 @@ stages:
       hash: md5
       md5: 4ee7f2a3ad4a11b01b9b3fa45be59492
       size: 255
+    - path: refactoring/evaluarModelos.py
+      hash: md5
+      md5: 8f0a61ee0e04980d03d7cf8c95db8491
+      size: 10062
     - path: refactoring/loadParams.py
       hash: md5
       md5: c0f9fb2695ac03e485f65a90c02cf622
@@ -297,16 +301,16 @@ stages:
     outs:
     - path: docs/confusion_matrixes/LogRegresion_prueba.png
       hash: md5
-      md5: dea83d1a7ddc5144162ffaad2f2249f7
-      size: 21950
+      md5: 9a33f4677512612da6b1900dca8d3f55
+      size: 21400
     - path: docs/confusion_matrixes/XGBoost_prueba.png
       hash: md5
       md5: c3237ea3e14bf22816c0768e9d0f5990
       size: 23052
     - path: metricas.json
       hash: md5
-      md5: cece974cbba5551b812bf2133ec787c3
-      size: 1160
+      md5: 89e6ba1f5172bf12652f94631fc4c429
+      size: 1161
   pruebas:
     cmd: pytest -s -W ignore
     deps:
@@ -380,7 +384,7 @@ stages:
       size: 192
     - path: modelos/modeloRegLog.sav
       hash: md5
-      md5: ccded058c9f96d368ad143380a2b2939
+      md5: eec9ab6486b9ad87e144a75291528bbc
       size: 1643
     - path: modelos/modeloXGBoost.sav
       hash: md5
@@ -398,3 +402,19 @@ stages:
       hash: md5
       md5: c84cd9a7905ca7e7562f9ab3237bfc7f
       size: 1347
+    - path: refactoring/test_feature_engeneering.py
+      hash: md5
+      md5: 1cc30349378f1ed07753ecd51d341fae
+      size: 1296
+    - path: refactoring/test_inputData.py
+      hash: md5
+      md5: bf7faddf0c7a512bc48d12a1d5072b5c
+      size: 744
+    - path: refactoring/test_model_quality.py
+      hash: md5
+      md5: cec4fefedb72a309901574be9f8dbfbb
+      size: 1640
+    - path: refactoring/test_model_settings.py
+      hash: md5
+      md5: 5070bee2aa8afe4b1cc68163388bf828
+      size: 1781

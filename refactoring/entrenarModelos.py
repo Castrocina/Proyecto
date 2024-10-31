@@ -42,6 +42,7 @@ def modeloRlog(X_train,y_train,param_grid_logistico):
         
         modelo = modelo_logistico
         modelo = entrenar_modelo(modelo,param_grid_logistico,X_train,y_train)
+        # print(modelo.get_params()) # Descomentar para obtenr los parametros de la corrida y poder actualizar el test
         return modelo
 
 
@@ -61,6 +62,7 @@ def modeloXGboost(X_train,y_train,param_grid_xgboost):
         modelo_xgboost = XGBClassifier(use_label_encoder=True, eval_metric='logloss')
         modelo = modelo_xgboost
         modelo = entrenar_modelo(modelo,param_grid_xgboost,X_train,y_train)
+        #print(modelo.get_params()) # Descomentar para obtenr los parametros de la corrida y poder actualizar el test
         return modelo
 
 def salvarModelo(modelo,path):
