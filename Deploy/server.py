@@ -1,5 +1,4 @@
 from fastapi import FastAPI, HTTPException
-import pickle
 import numpy as np
 import uvicorn
 

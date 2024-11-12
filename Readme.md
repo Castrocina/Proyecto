@@ -62,3 +62,75 @@ test de calidad del modelo
 
 Las pruebas funcionan a partir del commit de unittest
 De igual manera a partir del commit de Run 5 fase 3 se agrego el unit testing al pipeline de devc, por lo que al ejecutar dvc repro, se ejecuta el testing una vez que se contruye el modelo.
+
+
+------------------------------------------------
+
+To Deploy you will need to have the .env file in the Deploy folder, the simply execute the application with the following command:
+
+This will download the desired model from MLFlow and execute the server to host the api, this works locally, no need to add something else. Make sure you have mlflow with at least 1 run.
+
+The env file for local environmment should have the following info
+
+MLFLOW_URL=http://localhost:5000
+MLFLOW_EXP_NAME="Cirrhosis V1"
+MLFLOW_RUN_NAME=<Name of the Run> Exaple: "Run 4 fase 3"
+
+MODEL_PATH=<End section of the path of the model in mlflow> Exaple: LogRegresion_model
+
+
+-------------------------------------------------
+
+To Deploy as a docker container First we need to build the image.
+Run the following commando from a terminal started in the root of the folder:
+
+docker build ./Deploy -t model_cirrhosis:latest
+
+Once the container image is built execute the following command to start the container:
+
+docker run --env-file ./Deploy/.env -p 8000:8000  model_cirrhosis
+
+The env file for docker environmment in Windows should have the following info
+
+MLFLOW_URL=http://host.docker.internal:5000
+MLFLOW_EXP_NAME="Cirrhosis V1"
+MLFLOW_RUN_NAME=<Name of the Run> Exaple: "Run 4 fase 3"
+
+MODEL_PATH=<End section of the path of the model in mlflow> Exaple: LogRegresion_model
+
+-------------------------------------------------
+
+
+The following request needs to be performed to get a prediction, this is the same, if the application started in docker or localeith python commnad
+the request can be done by any request software like Insomnia or postman or trough curl
+
+curl --request POST \
+  --url http://localhost:8000/predict \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/9.3.3' \
+  --data '{
+	"data":{
+		"N_Days": 402,
+    "Drug": "Placebo",
+    "Age": 13918,
+    "Sex": "F",
+    "Ascites": "N",
+    "Hepatomegaly": "Y",
+    "Spiders": "Y",
+    "Edema": "N",
+    "Bilirubin": 3.4,
+    "Cholesterol": 279.0,
+    "Albumin": 3.53,
+    "Copper": 143.0,
+    "Alk_Phos": 671.0,
+    "SGOT": 101.95,
+    "Tryglicerides": 113.15,
+    "Platelets": 72.0,
+    "Prothrombin": 10.9,
+    "Stage": 3.0
+	}
+}'
+
+Of course the data can be changed , this is the example I used.
+
+![alt text](image.png)
