@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Iniciar sesión{% endblock %}
+{% block header %}Bienvenido al Sistema de Gestión de Quejas{% endblock %}
+{% block content %}
+<section class="card">
+  <form method="post" action="/login" class="form">
+    <h2>Iniciar sesión</h2>
+    <label for="email">Correo electrónico</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="password">Contraseña</label>
+    <input type="password" id="password" name="password" required />
+
+    <button type="submit" class="btn">Iniciar sesión</button>
+    {% if error %}
+    <p class="error">{{ error }}</p>
+    {% endif %}
+  </form>
+  <div class="helper-links">
+    <a href="#">Crear Usuario</a>
+    <a href="#">Olvidé mi contraseña</a>
+  </div>
+</section>
+{% endblock %}

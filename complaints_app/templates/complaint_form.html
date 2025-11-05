@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Levantar Queja{% endblock %}
+{% block header %}Levantar Queja{% endblock %}
+{% block content %}
+<section class="card">
+  <form method="post" action="/complaint" class="form">
+    <p>Por favor, proporcione los detalles de su inconformidad a continuación, en breve lo atenderemos:</p>
+    <label for="product_id">Producto</label>
+    <select id="product_id" name="product_id" required>
+      <option value="" disabled selected>Seleccione el producto</option>
+      {% for product in products %}
+      <option value="{{ product.id }}">{{ product.name }}</option>
+      {% endfor %}
+    </select>
+
+    <label for="description">Descripción</label>
+    <textarea id="description" name="description" rows="5" placeholder="Describa el problema..." required></textarea>
+
+    <button type="submit" class="btn">Enviar</button>
+  </form>
+  {% if message %}
+  <p class="success">{{ message }}</p>
+  {% endif %}
+</section>
+
+<section class="table-section">
+  <h2>Reclamaciones recientes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Folio</th>
+        <th>Producto</th>
+        <th>Área asignada</th>
+        <th>Confianza</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for complaint in complaints %}
+      <tr>
+        <td>{{ complaint.id }}</td>
+        <td>{{ complaint.product.name }}</td>
+        <td>{{ complaint.predicted_label or 'Sin asignar' }}</td>
+        <td>{{ '{:.2%}'.format(complaint.score) if complaint.score else 'N/A' }}</td>
+        <td class="description">{{ complaint.description }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="5" class="empty">No hay reclamaciones registradas.</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <form method="post" action="/logout">
+    <button type="submit" class="btn secondary">Cerrar sesión</button>
+  </form>
+</section>
+{% endblock %}

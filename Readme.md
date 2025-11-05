@@ -6,6 +6,20 @@ En la carpeta de data se van a guardar todos los archivos de datos, para poder l
 En la carpeta de models se van a guardar todos los modelos, para poder llevar el control de sus versiones
 Se agrego la carpeta remote_storage, que contiene todos los archivos de dvc en su format de almacenamiento, para que puedan jalar los archivos sin ningun problema.
 
+# Gestión de Quejas con clasificación automática
+
+Se agregó la aplicación **complaints_app** que expone una API y una interfaz web en FastAPI para levantar reclamaciones y asignarlas automáticamente a un área responsable usando un modelo de clasificación de Hugging Face. Para ejecutarla localmente:
+
+1. Instale las dependencias: `pip install -r requirements.txt`.
+2. Exporte su token de Hugging Face: `export HUGGINGFACE_TOKEN=<tu_token>`.
+3. Inicialice la base de datos y catálogos de referencia: `python -m complaints_app.seed`.
+4. Ejecute las pruebas automáticas end-to-end para comprobar el flujo completo de registro, autenticación y clasificación de reclamaciones:
+   `pytest tests/test_app.py -s`.
+   Las pruebas stubean el modelo de Hugging Face para evitar descargas y verifican que el área recomendada se asigne correctamente.
+5. Inicie el servidor: `uvicorn complaints_app.main:app --reload`.
+
+La interfaz estará disponible en `http://localhost:8000/`. Cree un usuario mediante el endpoint `POST /api/auth/register` o insertándolo manualmente para poder iniciar sesión en la vista web.
+
 # Instrucciones de uso
 
 El jupyter notebook se puede ejecutar de principio a fin una vez que se hayan instalado todas las librerias con el comando pip install -r requirments.txt.
